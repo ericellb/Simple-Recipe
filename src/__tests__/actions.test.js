@@ -3,6 +3,7 @@ import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+// TODO Import Actions
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -41,7 +42,7 @@ describe('Actions Test', () => {
 
   it('should return a FETCH_STREAMS action with a payload of the API Recipe Data', () => {
 
-    const mockData = {
+    const mockRecipes = {
       1: {
         recipe: 'Chicken Parm'
       },
@@ -52,14 +53,14 @@ describe('Actions Test', () => {
 
     const expectedAction = {
       type: FETCH_RECIPES,
-      payload: mockData
+      payload: mockRecipes
     }
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: mockData
+        response: mockRecipes
       });
     });
 
