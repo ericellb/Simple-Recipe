@@ -1,6 +1,6 @@
 import { SIGN_IN, SIGN_OUT } from '../actions/types';
 
-// TODO Import Auth Reducer
+import { authReducer } from '../reducers/authReducer';
 
 describe('Auth Reducer Tests', () => {
 
@@ -15,7 +15,7 @@ describe('Auth Reducer Tests', () => {
 
   });
 
-  it('should set state when a user logs in', () => {
+  it('should set isSignedIn true and userId when a user logs in', () => {
 
     const userId = 1;
 
@@ -33,7 +33,7 @@ describe('Auth Reducer Tests', () => {
 
   });
 
-  it('should set state when a user logs out', () => {
+  it('should set isSignedIn false and userId null when a user logs out', () => {
 
     const userId = 1;
 

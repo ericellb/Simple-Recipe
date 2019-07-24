@@ -1,6 +1,6 @@
 import { FETCH_RECIPES } from '../actions/types';
 
-// TODO Import Recipe Reducer
+import { recipeReducer } from '../reducers/recipeReducer';
 
 describe('Recipe Reducer Test', () => {
 
@@ -11,7 +11,7 @@ describe('Recipe Reducer Test', () => {
 
   })
 
-  it('should return array streams given no initial state', () => {
+  it('should call FETCH_RECIPES action and return an object with array recipes given no initial state', () => {
 
     const mockRecipes = [
       {
@@ -29,7 +29,7 @@ describe('Recipe Reducer Test', () => {
     }
 
     const fetchRecipesState = recipeReducer(undefined, action);
-    expect(fetchRecipesState).toEqual(mockRecipes);
+    expect(fetchRecipesState).toEqual({ recipes: mockRecipes });
 
   })
 
