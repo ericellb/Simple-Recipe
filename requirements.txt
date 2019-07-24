@@ -1,0 +1,9 @@
+Requirements
+  Edaman API - https://developer.edamam.com/edamam-docs-recipe-api
+    baseURL - https://api.edamam.com/search
+    app_id - 5471a8b4
+    app_key - b3f75e18c6312c2e78cda2ec412a5761
+    q - foodType
+
+    Example Search
+    https://api.edamam.com/search?q=chicken&app_id=5471a8b4&app_key=b3f75e18c6312c2e78cda2ec412a5761&to=2
