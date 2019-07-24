@@ -6,7 +6,7 @@ import RecipeSearch from '../components/RecipeSearch';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="ui container">
         <Header></Header>
         <RecipeSearch></RecipeSearch>
         <RecipeList></RecipeList>
