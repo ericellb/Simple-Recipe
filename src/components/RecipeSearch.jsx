@@ -1,46 +1,53 @@
 import React, { Component } from 'react'
-import { Image, Segment, Dropdown, Grid, GridColumn } from 'semantic-ui-react';
+import { Image, Segment, Dropdown } from 'semantic-ui-react';
 
-const dropdownTestOptions = [
-  {
-    key: '1',
-    text: 'American',
-    value: 'American'
-  },
-  {
-    key: '2',
-    text: 'Mexican',
-    value: 'Mexican'
-  }
+const cuisineTypes = [
+  { key: '1', text: 'None', value: null },
+  { key: '2', text: 'American', value: 'American' },
+  { key: '3', text: 'Chinese', value: 'Chinese' },
+  { key: '4', text: 'Mexican', value: 'Mexican' },
+  { key: '5', text: 'Italian', value: 'Italian' },
+  { key: '6', text: 'Japanese', value: 'Japanese' },
+  { key: '7', text: 'Greek', value: 'Greek' },
+  { key: '8', text: 'French', value: 'French' },
+  { key: '9', text: 'Thai', value: 'Thai' },
+  { key: '10', text: 'Indian', value: 'Indian' },
+  { key: '11', text: 'Mediterranean', value: 'Mediterranean' },
 ]
 
 export class RecipeSearch extends Component {
+
+
+  testFunction = (e, { value }) => {
+    console.log(value);
+  }
+
   render() {
     return (
       <Segment inverted attached>
-        <div class="search-container">
-          <div class="search">
-            <Dropdown placeholder='Cuisine Type...' search selection options={dropdownTestOptions} />
+        <div className="search-container">
+          <div className="search">
+            <Dropdown placeholder='Select Cuisine...' search selection options={cuisineTypes} onChange={this.testFunction} />
           </div>
-          <div class="empty"> </div>
-          <div class="icons">
-            <div class="icon-container">
+          <div className="empty"> </div>
+          <div className="icons">
+            <div className="icon-container">
               <Image src="/icons/chicken.png"></Image>
               <p className="horizontal-align"> Chicken </p>
             </div>
-            <div class="icon-container">
+            <div className="icon-container">
               <Image src="/icons/beef.png"></Image>
               <p className="horizontal-align"> Beef </p>
             </div>
-            <div class="icon-container">
+            <div className="icon-container">
               <Image src="/icons/pork.png"></Image>
               <p className="horizontal-align"> Pork </p>
             </div>
-            <div class="icon-container">
+            <div className="icon-container">
               <Image src="/icons/fish.png"></Image>
               <p className="horizontal-align"> Fish </p>
             </div>
-            <div class="icon-container">
+            <div className="icon-container">
               <Image src="/icons/vegetable.png"></Image>
               <p className="horizontal-align"> Vegetarian </p>
             </div>

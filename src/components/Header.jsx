@@ -7,10 +7,10 @@ export class Header extends Component {
 
   render() {
     return (
-      <Menu color="primary" size="large" attached inverted borderless>
+      <Menu size="large" attached inverted borderless>
         <Menu.Item>Simple Recipe</Menu.Item>
         <Menu.Item position="right">
-          <Input action={{ color: 'secondary', content: 'Search' }} placeholder="Search Recipes..." />
+          <Input action={{ color: 'teal', content: 'Search' }} placeholder="Search Recipes..." />
         </Menu.Item>
       </Menu>
     )
