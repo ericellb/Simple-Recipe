@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import titleImage from '../titleImage.jpg';
+import '../components/App.css';
+import { Image } from 'semantic-ui-react';
+
 
 
 
@@ -7,10 +9,14 @@ class TitleSection extends Component {
 
   render() {
     return (
-      <div style={{ position: 'relative' }}>
-        <img src={titleImage} style={{ width: '100%', display: 'block' }}></img>
-        <div style={{ position: 'absolute', width: '100%', background: 'black', top: '0px', height: '100%', opacity: 0.5 }}></div>
-      </div >
+      <div className="title-container">
+        <Image className="title-image" src="/images/titleImage.jpg" width='100%' />
+        <div className="image-overlay"></div>
+        <div className="text-overlay">
+          <h1>Ingredient Recipes</h1>
+          <p>Get tailored recipes by primary ingredients and cuisines types.</p>
+        </div>
+      </div>
 
     )
   }
@@ -18,5 +24,3 @@ class TitleSection extends Component {
 }
 
 export default TitleSection
-
-//<div style={{ background: 'black', position: 'absolute', width: '100%', height: '240.63px', top: '64px', opacity: 0.5 }}></div>

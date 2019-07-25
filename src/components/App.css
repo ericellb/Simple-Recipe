@@ -1,0 +1,70 @@
+
+/* TitleSection.jsx */
+
+.title-container {
+  position: relative;
+}
+
+.title-image {
+  max-height: 240px;
+  display: block;
+}
+
+.image-overlay {
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0) 0%,rgba(0, 0, 0, 1) 100%);
+  top: 0px;
+  height: 100%;
+  opacity: 0.75;
+}
+
+.text-overlay {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  padding: 2vw;
+  color: #eeeeee;
+  font-size: 30px;
+}
+
+.text-overlay h1 {
+  font-size: 46px;
+}
+
+
+/* RecipeSearch.jsx */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.search {
+  flex:1;
+}
+
+.icons {
+  display: flex;
+  flex:1.58;
+}
+
+.icon-container {
+  margin-right: 16px;
+  min-width: 72px;
+  text-align: center;
+  cursor: pointer;
+}
+
+
+
+/* RecipeList.jsx */
+.ui.cards > .card.card-container {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-right: 20px;
+}
+
+.ui.centered.cards {
+  margin-top: 25px;
+}
