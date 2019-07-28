@@ -1,6 +1,16 @@
-
+/* App.jsx */
 .app {
   min-height: 936px;
+}
+
+/* Header.jsx */
+.ui.right.aligned.search {
+  margin-right: 10px;
+}
+
+/* googleauth.jsx */
+.login-button {
+  margin-left: 16px;
 }
 
 /* TitleSection.jsx */

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Menu } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 
 export class Footer extends Component {
 

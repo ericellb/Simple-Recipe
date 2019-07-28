@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { fetchDictionary } from '../actions';
 import _ from 'lodash';
 
+import GoogleAuth from './GoogleAuth';
+
 const initialState = {
   isLoading: false,
   results: [],
@@ -55,6 +57,7 @@ export class Header extends Component {
             value={this.state.value}
             {...this.props}
           />
+          <GoogleAuth></GoogleAuth>
         </Menu.Item>
       </Menu>
     )
