@@ -2,7 +2,7 @@ import { FETCH_RECIPES } from '../actions/types';
 
 const initialState = {
 
-}
+};
 
 export const recipeReducer = (state = initialState, action) => {
   switch (action.type) {
