@@ -8,12 +8,7 @@ export class RecipeList extends Component {
 
 
   componentDidMount() {
-    //console.log(this.props.recipes);
-    //this.props.fetchRecipes();
-  }
-
-  componentDidUpdate() {
-    //console.log(this.props.recipes);
+    this.props.fetchRecipes(null, "chicken");
   }
 
   renderRecipeList() {
@@ -36,7 +31,7 @@ export class RecipeList extends Component {
 
   render() {
     return (
-      <Container fluid>
+      <Container fluid className="recipe-list">
         <Card.Group centered>
           {this.renderRecipeList()}
         </Card.Group>

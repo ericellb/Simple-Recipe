@@ -1,4 +1,8 @@
 
+.app {
+  min-height: 936px;
+}
+
 /* TitleSection.jsx */
 
 .title-container {
@@ -65,6 +69,41 @@
   margin-right: 20px;
 }
 
+
+.ui.cards > .card.card-container > .image {
+  border-radius: 0px 0px 0px 0px !important;
+}
+
 .ui.centered.cards {
-  margin-top: 25px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.recipe-list {
+  padding-bottom: 60px;
+}
+
+/* Footer.jsx */
+.footer {
+  height: 60px;
+  background: black;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  background: #1B1C1D;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.content-footer {
+  display: flex;
+  color: white;
+  margin: 14px;
+}
+
+.github-icon-link, .github-icon-link:visited {
+  display: block;
+  color: white;
 }
