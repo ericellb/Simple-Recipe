@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { Input, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-
+import { fetchDictionary } from '../actions';
 
 
 export class Header extends Component {
+
+  componentDidMount = () => {
+    this.props.fetchDictionary();
+  }
 
   render() {
     return (
@@ -18,4 +22,10 @@ export class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = (state) => {
+  return {
+    dictionary: state.dictionary
+  }
+}
+
+export default connect(mapStateToProps, { fetchDictionary })(Header)
