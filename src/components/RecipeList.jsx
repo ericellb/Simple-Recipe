@@ -23,6 +23,7 @@ export class RecipeList extends Component {
         return (
           <Card
             className="card-container"
+            href={data.link}
             key={data._id}
             image={data.src}
             header={data.title}

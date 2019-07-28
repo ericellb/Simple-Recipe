@@ -6,30 +6,25 @@ import { fetchRecipes } from '../actions';
 
 const cuisineTypes = [
   { key: '1', text: 'None', value: null },
-  { key: '2', text: 'American', value: 'American' },
-  { key: '3', text: 'Chinese', value: 'Chinese' },
-  { key: '4', text: 'Mexican', value: 'Mexican' },
-  { key: '5', text: 'Italian', value: 'Italian' },
-  { key: '6', text: 'Japanese', value: 'Japanese' },
-  { key: '7', text: 'Greek', value: 'Greek' },
-  { key: '8', text: 'French', value: 'French' },
-  { key: '9', text: 'Thai', value: 'Thai' },
-  { key: '10', text: 'Indian', value: 'Indian' },
-  { key: '11', text: 'Mediterranean', value: 'Mediterranean' },
+  { key: '2', text: 'American', value: 'american' },
+  { key: '3', text: 'Chinese', value: 'chinese' },
+  { key: '4', text: 'Mexican', value: 'mexican' },
+  { key: '5', text: 'Italian', value: 'italian' },
+  { key: '6', text: 'Japanese', value: 'japanese' },
+  { key: '7', text: 'Greek', value: 'greek' },
+  { key: '8', text: 'French', value: 'french' },
+  { key: '9', text: 'Thai', value: 'thai' },
+  { key: '10', text: 'Indian', value: 'indian' },
 ]
 
 export class RecipeSearch extends Component {
 
-  state = {
-    cuisineType: null
-  }
-
   handleCuisineOnChange = (e, { value }) => {
-    this.setState({ cuisineType: value })
+    this.props.fetchRecipes(value, null);
   }
 
   handleFoodTypeOnClick = (foodType) => {
-    this.props.fetchRecipes(this.state.cuisineType, foodType);
+    this.props.fetchRecipes(null, foodType);
   }
 
   render() {
