@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Image, Segment, Dropdown } from 'semantic-ui-react';
+import { Image, Segment, Dropdown, Search } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
-import { fetchRecipes } from '../actions';
+import { fetchRecipes, fetchDictionary } from '../actions';
 
 const cuisineTypes = [
   { key: '1', text: 'None', value: null },
@@ -17,7 +18,19 @@ const cuisineTypes = [
   { key: '10', text: 'Indian', value: 'indian' },
 ]
 
+const initialState = {
+  isLoading: false,
+  results: [],
+  value: ''
+}
+
 export class RecipeSearch extends Component {
+
+  state = initialState;
+
+  componentDidMount = () => {
+    this.props.fetchDictionary();
+  }
 
   handleCuisineOnChange = (e, { value }) => {
     this.props.fetchRecipes(value, null);
@@ -27,6 +40,26 @@ export class RecipeSearch extends Component {
     this.props.fetchRecipes(null, foodType);
   }
 
+  handleResultSelect = (e, { result }) => this.setState({ value: result.title });
+
+  handleSearchChange = (e, { value }) => {
+    console.log(this.props.dictionary.dictionary);
+    this.setState({ isLoading: true, value })
+
+    setTimeout(() => {
+      if (this.state.value.length < 1) return this.setState(initialState)
+
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
+      const isMatchType = result => re.test(result.type);
+      const isMatchTitle = result => re.test(result.title);
+
+      this.setState({
+        isLoading: false,
+        results: _.filter(this.props.dictionary.dictionary, (isMatchType || isMatchTitle)).slice(0, 4),
+      })
+    }, 300)
+  }
+
   render() {
     return (
       <Segment inverted attached>
@@ -34,7 +67,6 @@ export class RecipeSearch extends Component {
           <div className="search">
             <Dropdown placeholder='Select Cuisine...' search selection options={cuisineTypes} onChange={this.handleCuisineOnChange} />
           </div>
-          <div className="empty"> </div>
           <div className="icons">
             <div className="icon-container" onClick={() => this.handleFoodTypeOnClick('chicken')}>
               <Image src="/icons/chicken.png"></Image>
@@ -57,12 +89,32 @@ export class RecipeSearch extends Component {
               <p className="horizontal-align"> Vegetarian </p>
             </div>
           </div>
+          <div className="empty">
+            <Search
+              placeholder="Search recipes..."
+              aligned="right"
+              loading={this.state.isLoading}
+              onResultSelect={this.handleResultSelect}
+              onSearchChange={_.debounce(this.handleSearchChange, 500, {
+                leading: true,
+              })}
+              results={this.state.results}
+              value={this.state.value}
+              {...this.props}
+            />
+          </div>
         </div>
       </Segment >
     )
   }
 }
 
-export default connect(null, { fetchRecipes })(RecipeSearch);
+const mapStateToProps = (state) => {
+  return {
+    dictionary: state.dictionary
+  }
+}
+
+export default connect(mapStateToProps, { fetchRecipes, fetchDictionary })(RecipeSearch);
 
 

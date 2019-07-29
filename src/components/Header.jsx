@@ -1,62 +1,31 @@
 import React, { Component } from 'react'
-import { Search, Menu } from 'semantic-ui-react'
+import { Menu, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { fetchDictionary } from '../actions';
-import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 import GoogleAuth from './GoogleAuth';
 
-const initialState = {
-  isLoading: false,
-  results: [],
-  value: ''
-}
 
 export class Header extends Component {
 
-  state = initialState;
-
-  componentDidMount = () => {
-    this.props.fetchDictionary();
-  }
-
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title });
-
-  handleSearchChange = (e, { value }) => {
-    console.log(this.props.dictionary.dictionary);
-    this.setState({ isLoading: true, value })
-
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.setState(initialState)
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatchType = result => re.test(result.type);
-      const isMatchTitle = result => re.test(result.title);
-
-      this.setState({
-        isLoading: false,
-        results: _.filter(this.props.dictionary.dictionary, (isMatchType || isMatchTitle)).slice(0, 4),
-      })
-    }, 300)
+  renderSubmitRecipe = () => {
+    if (this.props.isSignedIn) {
+      return (
+        <Link to="/recipe/submit">
+          <Button className="create-recipe-button" color="secondary">
+            Submit Recipe
+        </Button>
+        </Link>
+      )
+    }
   }
 
   render() {
     return (
       <Menu size="large" attached inverted borderless>
-        <Menu.Item>Simple Recipe</Menu.Item>
+        <Menu.Item><Link to="/">Simple Recipe</Link></Menu.Item>
         <Menu.Item position="right">
-          <Search
-            placeholder="Search recipes..."
-            aligned="right"
-            loading={this.state.isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, {
-              leading: true,
-            })}
-            results={this.state.results}
-            value={this.state.value}
-            {...this.props}
-          />
+          {this.renderSubmitRecipe()}
           <GoogleAuth></GoogleAuth>
         </Menu.Item>
       </Menu>
@@ -66,8 +35,10 @@ export class Header extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dictionary: state.dictionary
+    dictionary: state.dictionary,
+    isSignedIn: state.auth.isSignedIn,
+    userId: state.auth.userId
   }
 }
 
-export default connect(mapStateToProps, { fetchDictionary })(Header)
+export default connect(mapStateToProps)(Header)

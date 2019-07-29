@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Router, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
 import Header from '../components/Header';
 import RecipeList from '../components/RecipeList';
 import RecipeSearch from '../components/RecipeSearch';
@@ -7,16 +10,20 @@ import Footer from './Footer';
 import '../components/App.css';
 
 import 'semantic-ui-less/semantic.less'
+import RecipeSubmit from './RecipeSubmit';
 
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <Header></Header>
-        <TitleSection></TitleSection>
-        <RecipeSearch></RecipeSearch>
-        <RecipeList></RecipeList>
-        <Footer></Footer>
+        <Router history={createBrowserHistory()}>
+          <Header></Header>
+          <TitleSection></TitleSection>
+          <RecipeSearch></RecipeSearch>
+          <Footer></Footer>
+          <Route path="/recipe/submit" exact component={RecipeSubmit} />
+          <Route path="/" exact component={RecipeList} />
+        </Router>
       </div>
     )
   }
