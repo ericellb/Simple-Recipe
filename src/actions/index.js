@@ -30,7 +30,7 @@ export const fetchRecipe = (recipeId) => async (dispatch) => {
   if (response.data.ip === "66.131.255.235")
     url = `http://localhost:3001/recipes?id=${recipeId}`;
   else
-    url = `http://ericedg.duckdns.org:3000/recipes?id=${recipeId}`
+    url = `http://ericedg.duckdns.org:3001/recipes?id=${recipeId}`
   const res = await axios.get(url);
   dispatch({ type: FETCH_RECIPE, payload: res.data });
 }
