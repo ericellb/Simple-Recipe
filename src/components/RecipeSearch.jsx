@@ -64,7 +64,7 @@ export class RecipeSearch extends Component {
     return (
       <Segment inverted attached>
         <div className="search-container">
-          <div className="search">
+          <div className="search-cuisine">
             <Dropdown placeholder='Select Cuisine...' search selection options={cuisineTypes} onChange={this.handleCuisineOnChange} />
           </div>
           <div className="icons">
@@ -89,7 +89,7 @@ export class RecipeSearch extends Component {
               <p className="horizontal-align"> Vegetarian </p>
             </div>
           </div>
-          <div className="empty">
+          <div className="search-recipe">
             <Search
               placeholder="Search recipes..."
               aligned="right"

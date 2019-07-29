@@ -61,17 +61,26 @@
 .search-container {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
-
-.search {
-  flex:1;
+.search-cuisine {
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  order: 1;
 }
-
 .icons {
   display: flex;
-  flex:1.58;
+  flex: 1;
+  justify-content: center;
+  order:2;
+}
+.search-recipe {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  order: 2;
 }
 
 .icon-container {
@@ -79,6 +88,25 @@
   min-width: 72px;
   text-align: center;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 898px) {
+  .search-cuisine {
+    justify-content: center;
+    flex-basis: 50%;
+    order:1;
+  }
+  .icons {
+    flex-basis: 100%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    order:2;
+  }
+  .search-recipe {
+    justify-content: center;
+    flex-basis: 50%;
+    order:1;
+  }
 }
 
 
