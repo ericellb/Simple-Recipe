@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Image, Segment, Dropdown, Search } from 'semantic-ui-react';
+import { fetchRecipe } from '../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -21,7 +22,8 @@ const cuisineTypes = [
 const initialState = {
   isLoading: false,
   results: [],
-  value: ''
+  value: '',
+  id: null
 }
 
 export class RecipeSearch extends Component {
@@ -41,13 +43,14 @@ export class RecipeSearch extends Component {
   }
 
   handleResultSelect = (e, { result }) => {
-    // todo set view to recipe picked
-    // request single recipe from api
     this.setState({ value: result.title });
+    this.setState({ id: result._id })
+
+    // fetch specific recipe from api given the _id in db
+    this.props.fetchRecipe(result._id);
   }
 
   handleSearchChange = (e, { value }) => {
-    console.log(this.props.dictionary.dictionary);
     this.setState({ isLoading: true, value })
 
     setTimeout(() => {
@@ -66,6 +69,7 @@ export class RecipeSearch extends Component {
       if (results <= 0)
         results = _.filter(this.props.dictionary.dictionary, isMatchDescription).slice(0, 4);
 
+      console.log(results);
       this.setState({
         isLoading: false,
         results: results,
@@ -128,6 +132,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchRecipes, fetchDictionary })(RecipeSearch);
+export default connect(mapStateToProps, { fetchRecipes, fetchRecipe, fetchDictionary })(RecipeSearch);
 
 

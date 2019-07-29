@@ -12,7 +12,6 @@ export class RecipeList extends Component {
   }
 
   renderRecipeList() {
-    console.log(this.props.recipes.recipes)
     if (this.props.recipes.recipes !== undefined)
       return this.props.recipes.recipes.map(data => {
         return (

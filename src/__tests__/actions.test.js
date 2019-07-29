@@ -1,5 +1,5 @@
-import { FETCH_RECIPES, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT } from '../actions/types';
-import { signIn, signOut, fetchRecipes, fetchDictionary } from '../actions'
+import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT } from '../actions/types';
+import { signIn, signOut, fetchRecipes, fetchDictionary, fetchRecipe } from '../actions'
 import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -94,6 +94,31 @@ describe('Actions Test', () => {
     const store = mockStore({ recipes: {} });
     return store.dispatch(fetchDictionary()).then(() => {
       expect(store.getActions()).toEqual(expectedAction);
+    })
+  })
+
+  it('should return a FETCH_RECIPE action with a payload of the API Recipe Data', () => {
+    const mockRecipe = {
+      title: 'title',
+      description: 'description'
+    }
+
+    const expectedAction = [{
+      type: FETCH_RECIPE,
+      payload: mockRecipe
+    }]
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: mockRecipe
+      })
+
+      const store = mockStore({ recipes: {} });
+      return store.dispatch(fetchRecipe()).then(() => {
+        expect(store.getActions()).toEqual(expectedAction);
+      })
     })
   })
 

@@ -1,4 +1,4 @@
-import { FETCH_RECIPES, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT } from '../actions/types';
+import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT } from '../actions/types';
 import axios from 'axios';
 
 export const signIn = (userId) => ({
@@ -23,8 +23,16 @@ export const fetchRecipes = (cuisineType, foodType) => async (dispatch) => {
   dispatch({ type: FETCH_RECIPES, payload: res.data });
 };
 
-const getClientIP = async () => {
-  return axios.get('https://api.ipify.org?format=json');
+export const fetchRecipe = (recipeId) => async (dispatch) => {
+  console.log(recipeId);
+  const response = await getClientIP();
+  let url = '';
+  if (response.data.ip === "66.131.255.235")
+    url = `http://localhost:3001/recipes?id=${recipeId}`;
+  else
+    url = `http://ericedg.duckdns.org:3000/recipes?id=${recipeId}`
+  const res = await axios.get(url);
+  dispatch({ type: FETCH_RECIPE, payload: res.data });
 }
 
 export const fetchDictionary = () => async (dispatch) => {
@@ -37,4 +45,8 @@ export const fetchDictionary = () => async (dispatch) => {
     url = (`http://ericedg.duckdns.org:3001/recipes?dictionary=1`);
   const res = await axios.get(url);
   dispatch({ type: FETCH_DICTIONARY, payload: res.data });
+}
+
+const getClientIP = async () => {
+  return axios.get('https://api.ipify.org?format=json');
 }
