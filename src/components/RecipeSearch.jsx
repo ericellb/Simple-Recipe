@@ -40,7 +40,11 @@ export class RecipeSearch extends Component {
     this.props.fetchRecipes(null, foodType);
   }
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.title });
+  handleResultSelect = (e, { result }) => {
+    // todo set view to recipe picked
+    // request single recipe from api
+    this.setState({ value: result.title });
+  }
 
   handleSearchChange = (e, { value }) => {
     console.log(this.props.dictionary.dictionary);
@@ -50,12 +54,21 @@ export class RecipeSearch extends Component {
       if (this.state.value.length < 1) return this.setState(initialState)
 
       const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatchType = result => re.test(result.type);
       const isMatchTitle = result => re.test(result.title);
+      const isMatchType = result => re.test(result.type);
+      const isMatchDescription = result => re.test(result.description);
+
+      // Check our results
+      // Prioritize title => type => desc
+      let results = _.filter(this.props.dictionary.dictionary, isMatchTitle).slice(0, 4);
+      if (results <= 0)
+        results = _.filter(this.props.dictionary.dictionary, isMatchType).slice(0, 4);
+      if (results <= 0)
+        results = _.filter(this.props.dictionary.dictionary, isMatchDescription).slice(0, 4);
 
       this.setState({
         isLoading: false,
-        results: _.filter(this.props.dictionary.dictionary, (isMatchType || isMatchTitle)).slice(0, 4),
+        results: results,
       })
     }, 300)
   }

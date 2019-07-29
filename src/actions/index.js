@@ -32,9 +32,9 @@ export const fetchDictionary = () => async (dispatch) => {
   const response = await getClientIP();
   let url = '';
   if (response.data.ip === "66.131.255.235")
-    url = (`http://localhost:3001/recipes?all=1`);
+    url = (`http://localhost:3001/recipes?dictionary=1`);
   else
-    url = (`http://ericedg.duckdns.org:3001/recipes?all=1`);
+    url = (`http://ericedg.duckdns.org:3001/recipes?dictionary=1`);
   const res = await axios.get(url);
   dispatch({ type: FETCH_DICTIONARY, payload: res.data });
 }
