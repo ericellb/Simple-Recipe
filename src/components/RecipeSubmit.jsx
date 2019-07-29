@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Container, Image, Form, Popup } from 'semantic-ui-react';
+import axios from 'axios';
 
 export class RecipeSubmit extends Component {
 
@@ -8,18 +9,33 @@ export class RecipeSubmit extends Component {
     description: null,
     link: null,
     src: null,
+    type: null,
     titleError: false,
     descriptionError: false,
     linkError: false,
-    srcError: false
+    srcError: false,
+    typeError: false,
+    submitShow: false,
+    submitError: false,
+    popupContent: null
   }
 
-  validateInput = () => {
-    ['title', 'description', 'link', 'src'].forEach(key => {
-      if (this.state[key])
-        this.setState({ [`${key}Error`]: false })
+  validateInput = async () => {
+    ['title', 'description', 'link', 'src', 'type'].forEach(key => {
+      if (this.state[key]) {
+        // Test for valid URL
+        if (key === 'link' || key === 'src') {
+          var urlRegex = RegExp(/^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/);
+          if (urlRegex.test(this.state[key]) === false)
+            this.setState({ [`${key}Error`]: `Please enter a valid ${key}` })
+          else
+            this.setState({ [`${key}Error`]: false })
+        }
+        else
+          this.setState({ [`${key}Error`]: false })
+      }
       else
-        this.setState({ [`${key}Error`]: true })
+        this.setState({ [`${key}Error`]: `Please enter a valid ${key}` })
     })
   }
 
@@ -27,14 +43,51 @@ export class RecipeSubmit extends Component {
     this.setState({ [name]: value })
   }
 
+  handleSubmitShow = (status) => {
+    if (status === '200') {
+      this.setState({ popupContent: 'Successfully submitted recipe!' });
+      this.setState({ submitError: false });
+    }
+    else {
+      this.setState({ popupContent: 'Server Error:  either offline or invalid params' });
+      this.setState({ submitError: true })
+    }
+
+    this.setState({ submitShow: true });
+    setTimeout(() => {
+      this.setState({ submitShow: false });
+    }, 2500);
+  }
+
   handleFormSubmit = async () => {
     // Validate form
     await this.validateInput();
-    const { titleError, descriptionError, linkError, srcError } = this.state;
-    if (titleError || descriptionError || linkError || srcError)
-      console.log('error!');
-    else
-      console.log('valid form!')
+    const { titleError, descriptionError, linkError, srcError, typeError } = this.state;
+    if (titleError || descriptionError || linkError || srcError || typeError)
+      console.log('error');
+    else {
+      // Hit our api!
+      const res = await this.handleApiCall();
+      this.handleSubmitShow(res.status);
+    }
+  }
+
+  handleApiCall = async () => {
+    return axios.post('http://localhost:3001/recipes', {
+      params: {
+        title: this.state.title,
+        description: this.state.description,
+        src: this.state.src,
+        link: this.state.link,
+        type: this.state.type
+      }
+    })
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        return err;
+      })
   }
 
   render() {
@@ -56,14 +109,14 @@ export class RecipeSubmit extends Component {
                   <Form.Input label="Recipe Description" type="text" placeholder="Recipe Description..." name="description" onChange={this.handleInputChange} error={this.state.descriptionError}></Form.Input>
                   <Form.Input label="Recipe Link" type="text" placeholder="Recipe Link..." name="link" onChange={this.handleInputChange} error={this.state.linkError}></Form.Input>
                   <Form.Input label="Recipe Image Src" type="text" placeholder="Recipe Image Src..." name="src" onChange={this.handleInputChange} error={this.state.srcError}></Form.Input>
-                  <Form.Button className="form-submit-button" align="right" color="secondary" content='Submit' />
-                  <Popup content="Successfully sumbitted recipe. Thanks!" on="click" pinned></Popup>
+                  <Form.Input label="Recipe Image Type" type="text" placeholder="Recipe Type..." name="type" onChange={this.handleInputChange} error={this.state.srcError}></Form.Input>
+                  <Popup content={this.state.popupContent} className={this.state.submitError ? 'error' : ''} open={this.state.submitShow} on="click" position="top center" trigger={<Form.Button className="form-submit-button" align="right" color="green" content='Submit Recipe' />} />
                 </div>
               </Form>
             </Card.Content>
           </Card>
         </Card.Group>
-      </Container>
+      </Container >
     )
   }
 }

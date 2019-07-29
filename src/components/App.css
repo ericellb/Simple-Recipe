@@ -161,3 +161,8 @@
   display: block;
   color: white;
 }
+
+/* RecipeSubmit.jsx */
+.popup.error {
+  color: red !important;
+}
