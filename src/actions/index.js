@@ -1,10 +1,16 @@
 import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT, GET_ADMIN } from '../actions/types';
 import axios from 'axios';
 
-export const signIn = (userId) => ({
-  type: SIGN_IN,
-  payload: userId
-});
+export const signIn = (userId, name, email) => async (dispatch) => {
+  const response = await getClientIP();
+  let url = '';
+  if (response.data.ip === "66.131.255.235")
+    url = `http://localhost:3001/users?userId=${userId}&name=${name}&email=${email}`;
+  else
+    url = `http://localhost:3001/users?userId=${userId}`
+  const res = await axios.post(url);
+  dispatch({ type: SIGN_IN, payload: userId });
+};
 
 export const signOut = (userId) => ({
   type: SIGN_OUT,

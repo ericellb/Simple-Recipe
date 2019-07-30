@@ -101,7 +101,7 @@ export class RecipeSubmit extends Component {
               </Card.Meta>
             </Card.Content>
             <Card.Content extra>
-              <Form onSubmit={this.handleFormSubmit} error='false'>
+              <Form onSubmit={this.handleFormSubmit}>
                 <div className="form-container">
                   <Form.Input label="Recipe Title" type="text" placeholder="Recipe Title..." name="title" onChange={this.handleInputChange} error={this.state.titleError}></Form.Input>
                   <Form.Input label="Recipe Description" type="text" placeholder="Recipe Description..." name="description" onChange={this.handleInputChange} error={this.state.descriptionError}></Form.Input>
