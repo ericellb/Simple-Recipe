@@ -18,7 +18,7 @@ export class Header extends Component {
     if (this.props.isSignedIn) {
       return (
         <Link to="/recipe/submit">
-          <Button className="create-recipe-button" color="secondary">
+          <Button className="create-recipe-button" color="teal">
             Submit Recipe
         </Button>
         </Link>

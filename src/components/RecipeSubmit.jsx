@@ -44,7 +44,8 @@ export class RecipeSubmit extends Component {
   }
 
   handleSubmitShow = (status) => {
-    if (status === '200') {
+    console.log(status);
+    if (status === 200) {
       this.setState({ popupContent: 'Successfully submitted recipe!' });
       this.setState({ submitError: false });
     }
@@ -73,7 +74,7 @@ export class RecipeSubmit extends Component {
   }
 
   handleApiCall = async () => {
-    return axios.post('http://localhost:3001/recipes', {
+    return axios.post('http://localhost:3001/recipeSubmissions', {
       params: {
         title: this.state.title,
         description: this.state.description,

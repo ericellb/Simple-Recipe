@@ -125,7 +125,6 @@ export class RecipeSearch extends Component {
               })}
               results={this.state.results}
               value={this.state.value}
-              {...this.props}
             />
           </div>
         </div>
