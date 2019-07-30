@@ -9,16 +9,30 @@ import { getAdmin } from '../actions';
 
 export class Header extends Component {
 
-  componentDidUpdate = () => {
-    if (this.props.isSignedIn)
-      getAdmin(this.props.userId);
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.isSignedIn !== this.props.isSignedIn) {
+      console.log(this.props.userId)
+      this.props.getAdmin(this.props.userId);
+    }
+  }
+
+  renderAdminButton = () => {
+    if (this.props.isAdmin) {
+      return (
+        <Link to="/admin">
+          <Button className="header-button" color="green">
+            Admin Panel
+        </Button>
+        </Link>
+      )
+    }
   }
 
   renderSubmitRecipe = () => {
     if (this.props.isSignedIn) {
       return (
         <Link to="/recipe/submit">
-          <Button className="create-recipe-button" color="teal">
+          <Button className="header-button" color="teal">
             Submit Recipe
         </Button>
         </Link>
@@ -32,6 +46,7 @@ export class Header extends Component {
         <Menu.Item><Link to="/">Simple Recipe</Link></Menu.Item>
         <Menu.Item position="right">
           {this.renderSubmitRecipe()}
+          {this.renderAdminButton()}
           <GoogleAuth></GoogleAuth>
         </Menu.Item>
       </Menu>

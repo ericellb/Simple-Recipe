@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router, Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import createBrowserHistory from '../history';
 
 import Header from '../components/Header';
 import RecipeList from '../components/RecipeList';
@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Router history={createBrowserHistory()}>
+        <Router history={createBrowserHistory}>
           <Header></Header>
           <TitleSection></TitleSection>
           <RecipeSearch></RecipeSearch>

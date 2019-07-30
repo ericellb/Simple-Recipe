@@ -15,11 +15,11 @@ export const getAdmin = (userId) => async (dispatch) => {
   const response = await getClientIP();
   let url = '';
   if (response.data.ip === "66.131.255.235")
-    url = `http://localhost:3001/auth?id=${userId}`;
+    url = `http://localhost:3001/admin?userId=${userId}`;
   else
-    url = `http://localhost:3001/auth?id=${userId}`
+    url = `http://localhost:3001/admin?userId=${userId}`
   const res = await axios.get(url);
-  console.log('checked for admin');
+  console.log(res);
   dispatch({ type: GET_ADMIN, payload: res.data });
 }
 

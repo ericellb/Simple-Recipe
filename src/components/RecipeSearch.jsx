@@ -37,7 +37,8 @@ export class RecipeSearch extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.id !== this.state.id) {
-      this.props.fetchRecipe(this.state.id);
+      if (this.state.id !== null)
+        this.props.fetchRecipe(this.state.id);
     }
     if (prevState.cuisineType !== this.state.cuisineType) {
       this.props.fetchRecipes(this.state.cuisineType, null);
