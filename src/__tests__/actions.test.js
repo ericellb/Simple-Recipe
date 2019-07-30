@@ -1,5 +1,5 @@
-import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT } from '../actions/types';
-import { signIn, signOut, fetchRecipes, fetchDictionary, fetchRecipe } from '../actions'
+import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT, GET_ADMIN } from '../actions/types';
+import { signIn, signOut, fetchRecipes, fetchDictionary, fetchRecipe, getAdmin } from '../actions'
 import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -35,6 +35,29 @@ describe('Actions Test', () => {
     }
     const userId = response.payload;
     expect(signOut(userId)).toEqual(response);
+  })
+
+  it('should return a GET_ADMIN action with a payload of isAdmin', () => {
+
+    const userId = '1';
+
+    const expectedAction = [{
+      type: GET_ADMIN,
+      payload: userId
+    }]
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: true
+      });
+    });
+
+    const store = mockStore({ auth: {} });
+    return store.dispatch(getAdmin(userId)).then(() => {
+      expect(store.getActions()).toEqual(expectedAction);
+    })
   })
 
   it('should return a FETCH_RECIPES action with a payload of the API Recipe Data', () => {

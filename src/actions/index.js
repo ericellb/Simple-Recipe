@@ -1,4 +1,4 @@
-import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT } from '../actions/types';
+import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT, GET_ADMIN } from '../actions/types';
 import axios from 'axios';
 
 export const signIn = (userId) => ({
@@ -10,6 +10,18 @@ export const signOut = (userId) => ({
   type: SIGN_OUT,
   payload: userId
 });
+
+export const getAdmin = (userId) => async (dispatch) => {
+  const response = await getClientIP();
+  let url = '';
+  if (response.data.ip === "66.131.255.235")
+    url = `http://localhost:3001/auth?id=${userId}`;
+  else
+    url = `http://localhost:3001/auth?id=${userId}`
+  const res = await axios.get(url);
+  console.log('checked for admin');
+  dispatch({ type: GET_ADMIN, payload: res.data });
+}
 
 export const fetchRecipes = (cuisineType, foodType) => async (dispatch) => {
   // REMOVE WHEN DEPLOY (Shitty 'feature' with my router and NAT Loopback)

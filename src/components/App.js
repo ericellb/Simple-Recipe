@@ -11,8 +11,10 @@ import '../components/App.css';
 
 import 'semantic-ui-less/semantic.less'
 import RecipeSubmit from './RecipeSubmit';
+import RecipeAdmin from './RecipeAdmin';
 
 class App extends Component {
+
   render() {
     return (
       <div className="app">
@@ -23,6 +25,7 @@ class App extends Component {
           <Footer></Footer>
           <Route path="/recipe/submit" exact component={RecipeSubmit} />
           <Route path="/" exact component={RecipeList} />
+          <Route path="/admin" exact component={RecipeAdmin} />
         </Router>
       </div>
     )

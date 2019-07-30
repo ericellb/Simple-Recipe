@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT } from '../actions/types';
+import { SIGN_IN, SIGN_OUT, GET_ADMIN } from '../actions/types';
 
 import { authReducer } from '../reducers/authReducer';
 
@@ -50,5 +50,23 @@ describe('Auth Reducer Tests', () => {
     });
 
   });
+
+  it('should call GET_AUTH action and set isAuthed to true or false', () => {
+    const userId = 1;
+
+    const action = {
+      type: GET_ADMIN,
+      payload: userId
+    }
+
+    const authState = authReducer(undefined, action);
+
+    expect(authState).toEqual({
+      isSignedIn: false,
+      userId: null,
+      isAdmin: true
+    })
+
+  })
 
 })

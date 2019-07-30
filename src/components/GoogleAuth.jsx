@@ -48,7 +48,7 @@ export class GoogleAuth extends Component {
     }
     else if (!this.props.isSignedIn) {
       return (
-        <Button color="secondary" onClick={this.onSignInClick} className="login-button">
+        <Button color="teal" onClick={this.onSignInClick} className="login-button">
           <Icon className="google icon" />
           Sign In with Google
         </Button>

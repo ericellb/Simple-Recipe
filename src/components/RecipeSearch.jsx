@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Image, Segment, Dropdown, Search } from 'semantic-ui-react';
-import { fetchRecipe } from '../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { fetchRecipes, fetchDictionary } from '../actions';
+import { fetchRecipe, fetchRecipes, fetchDictionary } from '../actions';
 
 const cuisineTypes = [
   { key: '1', text: 'None', value: null },
@@ -23,7 +22,9 @@ const initialState = {
   isLoading: false,
   results: [],
   value: '',
-  id: null
+  id: null,
+  cuisineType: null,
+  foodType: null
 }
 
 export class RecipeSearch extends Component {
@@ -34,20 +35,28 @@ export class RecipeSearch extends Component {
     this.props.fetchDictionary();
   }
 
-  handleCuisineOnChange = (e, { value }) => {
-    this.props.fetchRecipes(value, null);
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.id !== this.state.id) {
+      this.props.fetchRecipe(this.state.id);
+    }
+    if (prevState.cuisineType !== this.state.cuisineType) {
+      this.props.fetchRecipes(this.state.cuisineType, null);
+    }
+    if (prevState.foodType !== this.state.foodType) {
+      this.props.fetchRecipes(null, this.state.foodType)
+    }
   }
 
-  handleFoodTypeOnClick = (foodType) => {
-    this.props.fetchRecipes(null, foodType);
+  handleCuisineOnChange = (e, { value }) => {
+    this.setState({ cuisineType: value });
+  }
+
+  handleFoodTypeOnClick = (value) => {
+    this.setState({ foodType: value })
   }
 
   handleResultSelect = (e, { result }) => {
-    this.setState({ value: result.title });
     this.setState({ id: result._id })
-
-    // fetch specific recipe from api given the _id in db
-    this.props.fetchRecipe(result._id);
   }
 
   handleSearchChange = (e, { value }) => {
@@ -69,7 +78,6 @@ export class RecipeSearch extends Component {
       if (results <= 0)
         results = _.filter(this.props.dictionary.dictionary, isMatchDescription).slice(0, 4);
 
-      console.log(results);
       this.setState({
         isLoading: false,
         results: results,
