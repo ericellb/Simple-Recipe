@@ -166,3 +166,7 @@
 .popup.error {
   color: red !important;
 }
+
+.popup.success {
+  color: green !important;
+}

@@ -11,7 +11,6 @@ export class Header extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.isSignedIn !== this.props.isSignedIn) {
-      console.log(this.props.userId)
       this.props.getAdmin(this.props.userId);
     }
   }

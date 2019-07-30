@@ -19,7 +19,6 @@ export const getAdmin = (userId) => async (dispatch) => {
   else
     url = `http://localhost:3001/admin?userId=${userId}`
   const res = await axios.get(url);
-  console.log(res);
   dispatch({ type: GET_ADMIN, payload: res.data });
 }
 
@@ -36,7 +35,6 @@ export const fetchRecipes = (cuisineType, foodType) => async (dispatch) => {
 };
 
 export const fetchRecipe = (recipeId) => async (dispatch) => {
-  console.log(recipeId);
   const response = await getClientIP();
   let url = '';
   if (response.data.ip === "66.131.255.235")
