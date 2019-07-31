@@ -78,7 +78,7 @@ export class UsersList extends Component {
     if (action === 'add') {
       this.setState({
         modalShow: true,
-        modalText: `Are you sure you want to give ${user.email} Admin Access?`,
+        modalText: `Are you sure you want to add ${user.email} to Admins?`,
         modalAction: {
           type: 'add',
           userId: user.userId
@@ -88,7 +88,7 @@ export class UsersList extends Component {
     else if (action === 'delete') {
       this.setState({
         modalShow: true,
-        modalText: `Are you sure you want to remove Admin Access from this ${user.email} ?`,
+        modalText: `Are you sure you want to remove ${user.email} from Admins ?`,
         modalAction: {
           type: 'del',
           userId: user.userId
@@ -100,13 +100,15 @@ export class UsersList extends Component {
   render() {
     return (
       <div>
+        Admin List
+        <br />
         <List celled relaxed verticalAlign='middle'>
           {this.state.users.map((user) => {
             return (
               <div className="user-list-container">
                 {this.isUserAdmin(user) ? <Icon size='large' name='user secret'></Icon> : <Icon size='large' name='user'></Icon>}
                 <div>{user.email}</div>
-                {this.isUserAdmin(user) ? <Button onClick={() => this.handleUserOnClick(user, 'delete')} color="red" floated="right">Delete</Button> : <Button onClick={() => this.handleUserOnClick(user, 'add')} color="green" floated="right">Add</Button>}
+                {this.isUserAdmin(user) ? <Button onClick={() => this.handleUserOnClick(user, 'delete')} color="red" className="admin-button" floated="right">Delete</Button> : <Button onClick={() => this.handleUserOnClick(user, 'add')} color="green" className="admin-button" floated="right">Add</Button>}
               </div>
             )
           })}
@@ -129,7 +131,7 @@ export class UsersList extends Component {
           </Modal.Actions>
         </Modal>
 
-      </div>
+      </div >
 
     )
   }

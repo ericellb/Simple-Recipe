@@ -69,6 +69,10 @@
   border-top: 2px outset grey;
 }
 
+.admin-button {
+  min-width: 85px;
+}
+
 .user-list-container {
   display: flex;
   justify-content: space-between;

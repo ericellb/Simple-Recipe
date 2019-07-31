@@ -3,6 +3,7 @@ import { Card, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import { fetchRecipes } from '../../actions'
+import RecipeCard from './RecipeCard';
 
 export class RecipeList extends Component {
 
@@ -15,12 +16,12 @@ export class RecipeList extends Component {
     if (this.props.recipes.recipes !== undefined)
       return this.props.recipes.recipes.map(data => {
         return (
-          <Card
+          <RecipeCard
             className="card-container"
-            href={data.link}
-            key={data._id}
-            image={data.src}
-            header={data.title}
+            link={data.link}
+            id={data._id}
+            src={data.src}
+            title={data.title}
             description={data.description}
           />
         )
