@@ -1,0 +1,78 @@
+.admin-flex-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  padding:16px;
+  box-sizing: border-box;
+  margin-left: 5.3px;
+  margin-right: 5.3px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.users-list {
+  flex:1;
+  min-width: 212.25px;
+}
+
+.recipe-list {
+  flex:2;
+  min-width: 392.5px;
+}
+
+.rate-limit-list {
+  flex:1;
+  min-width: 212.25px;
+}
+
+
+
+@media only screen and (min-width: 675px) and (max-width: 898px) {
+  .users-list {
+    order:2;
+  }
+  .recipe-list {
+    order:1;
+    flex-basis: 100%;
+  }
+  .rate-limit-list {
+    order:2;
+  }
+}
+
+@media only screen and (max-width: 674px) {
+  .users-list {
+    order:2;
+    flex-basis: 100%;
+  }
+  .recipe-list {
+    order:1;
+    flex-basis: 100%;
+  }
+  .rate-limit-list {
+    order:3;
+    flex-basis: 100%;
+  }
+}
+
+/* UsersList.jsx */
+
+.user-list-container:first-child {
+  border-top: 2px outset grey;
+}
+
+.user-list-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  align-items: center;
+  border-bottom: 2px inset grey;
+}

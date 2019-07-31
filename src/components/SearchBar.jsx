@@ -27,7 +27,7 @@ const initialState = {
   foodType: null
 }
 
-export class RecipeSearch extends Component {
+export class SearchBar extends Component {
 
   state = initialState;
 
@@ -140,6 +140,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchRecipes, fetchRecipe, fetchDictionary })(RecipeSearch);
+export default connect(mapStateToProps, { fetchRecipes, fetchRecipe, fetchDictionary })(SearchBar);
 
 

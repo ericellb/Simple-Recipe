@@ -1,0 +1,15 @@
+TODO LIST - Implemented Features
+
+Can now access Recipe Submissions
+Can now access List of Users
+
+Build Admin Page
+
+Show Recipe Submissions
+Show list of users (buttons to add to admins)
+Show list of admins (buttons to remove admins)
+
+
+TODO LIST - Unimplemented Features
+
+Add API endpoint to throw submitted recipe into recipes collection

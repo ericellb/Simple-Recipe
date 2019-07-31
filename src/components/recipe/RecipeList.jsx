@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Card, Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-import { fetchRecipes } from '../actions'
+import { fetchRecipes } from '../../actions'
 
 export class RecipeList extends Component {
 

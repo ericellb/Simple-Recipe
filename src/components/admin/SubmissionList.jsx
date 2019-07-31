@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-export class RecipeShow extends Component {
+export class SubmissionList extends Component {
   render() {
     return (
       <div>
-        Recipe Show
+        hey
       </div>
     )
   }
 }
 
-export default RecipeShow
+export default SubmissionList
