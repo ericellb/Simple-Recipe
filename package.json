@@ -1,6 +1,7 @@
 {
   "name": "simple-recipe",
   "version": "0.1.0",
+  "homepage": "http://shmeegie.github.io/Simple-Recipe",
   "private": true,
   "dependencies": {
     "@types/jest": "^24.0.15",
@@ -23,7 +24,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,6 +46,7 @@
   "devDependencies": {
     "@craco/craco": "^5.2.4",
     "craco-less": "^1.9.0",
+    "gh-pages": "^2.0.0",
     "semantic-ui-less": "^2.4.1"
   }
 }
