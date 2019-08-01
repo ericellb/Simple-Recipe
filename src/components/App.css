@@ -1,7 +1,4 @@
 /* App.jsx */
-.app {
-  min-height: 936px;
-}
 
 /* Header.jsx */
 .ui.right.aligned.search {
@@ -10,6 +7,13 @@
 
 .header-button {
   margin-left: 10px !important;
+  font-size: 15px !important;
+}
+
+@media only screen and (max-width: 607px) {
+  .header-button {
+    font-size: calc(11px + 6 * ((100vw - 500px) / 172)) !important;
+  }
 }
 
 
@@ -124,12 +128,33 @@
 }
 
 .ui.centered.cards {
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin: 0px;
+  position: relative;
 }
 
 .recipe-list {
-  padding-bottom: 60px;
+  margin-bottom: 64px;
+}
+
+.submission-section {
+  padding-top: 12px;
+  flex-basis: 100%;
+  border-top: 1px solid lightgray;
+  margin-top: 8px;
+}
+
+/* RecipeCard.jsx */
+.card-extra {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.ui.card {
+  margin: 12.8px !important;
+}
+
+.ui.cards > .card > .image > img, .ui.card > .image > img {
+  border-radius: 0px !important;
 }
 
 /* Footer.jsx */

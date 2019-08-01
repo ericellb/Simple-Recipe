@@ -4,6 +4,13 @@
   padding: 16px;
   box-sizing: border-box;
   flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 44px;
+}
+
+.image img {
+  max-width: 290px !important;
+  max-height: 194px !important;
 }
 
 .flex-item {
@@ -15,15 +22,15 @@
   margin-left: 5.3px;
   margin-right: 5.3px;
   margin-bottom: 16px;
-  text-align: center;
 }
 
 .users-list {
   flex:1;
   min-width: 212.25px;
+  text-align: center;
 }
 
-.recipe-list {
+.submission-list {
   flex:2;
   min-width: 392.5px;
 }
@@ -39,7 +46,7 @@
   .users-list {
     order:2;
   }
-  .recipe-list {
+  .submission-list {
     order:1;
     flex-basis: 100%;
   }
@@ -53,7 +60,7 @@
     order:2;
     flex-basis: 100%;
   }
-  .recipe-list {
+  .submission-list {
     order:1;
     flex-basis: 100%;
   }
@@ -80,3 +87,4 @@
   align-items: center;
   border-bottom: 2px inset grey;
 }
+

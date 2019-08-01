@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 
 import RecipeCard from '../recipe/RecipeCard';
-import { Card, Modal, Button, Icon } from 'semantic-ui-react';
+import { Card, Modal, Button, Icon, Container } from 'semantic-ui-react';
 
 export class SubmissionList extends Component {
 
@@ -74,15 +74,18 @@ export class SubmissionList extends Component {
   }
 
   renderRecipeList() {
+    console.log(this.state.recipes)
     if (this.state.recipes !== undefined)
       return this.state.recipes.map(data => {
         return (
           <RecipeCard
             className="card-container"
+            link={data.link}
             id={data._id}
             src={data.src}
             title={data.title}
             description={data.description}
+            extra={data.extra}
             onClick={(submissionId, action) => this.handleSubmissionClick(submissionId, action)}
             buttons={true}
           >
@@ -108,7 +111,7 @@ export class SubmissionList extends Component {
   render() {
     return (
       <div>
-        <h1>Recipe Submission</h1>
+        <h2 style={{ textAlign: 'center' }}>Recipe Submissions</h2>
         <Card.Group centered>
           {this.renderRecipeList()}
         </Card.Group>

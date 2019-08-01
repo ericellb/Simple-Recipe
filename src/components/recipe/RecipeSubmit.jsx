@@ -10,18 +10,20 @@ export class RecipeSubmit extends Component {
     link: null,
     src: null,
     type: null,
+    extra: null,
     titleError: false,
     descriptionError: false,
     linkError: false,
     srcError: false,
     typeError: false,
+    extraError: false,
     submitShow: false,
     submitError: false,
     popupContent: null
   }
 
   validateInput = async () => {
-    ['title', 'description', 'link', 'src', 'type'].forEach(key => {
+    ['title', 'description', 'link', 'src', 'type', 'extra'].forEach(key => {
       if (this.state[key]) {
         // Test for valid URL
         if (key === 'link' || key === 'src') {
@@ -62,8 +64,8 @@ export class RecipeSubmit extends Component {
   handleFormSubmit = async () => {
     // Validate form
     await this.validateInput();
-    const { titleError, descriptionError, linkError, srcError, typeError } = this.state;
-    if (!titleError && !descriptionError && !linkError && !srcError && !typeError) {
+    const { titleError, descriptionError, linkError, srcError, typeError, extraError } = this.state;
+    if (!titleError && !descriptionError && !linkError && !srcError && !typeError && !extraError) {
       // Hit our api!
       const res = await this.handleApiCall();
       this.handleSubmitShow(res.status);
@@ -77,7 +79,8 @@ export class RecipeSubmit extends Component {
         description: this.state.description,
         src: this.state.src,
         link: this.state.link,
-        type: this.state.type
+        type: this.state.type,
+        extra: this.state.extra
       }
     })
       .then((res) => {
@@ -105,9 +108,10 @@ export class RecipeSubmit extends Component {
                 <div className="form-container">
                   <Form.Input label="Recipe Title" type="text" placeholder="Recipe Title..." name="title" onChange={this.handleInputChange} error={this.state.titleError}></Form.Input>
                   <Form.Input label="Recipe Description" type="text" placeholder="Recipe Description..." name="description" onChange={this.handleInputChange} error={this.state.descriptionError}></Form.Input>
+                  <Form.Input label="Recipe Type" type="text" placeholder="Recipe Type..." name="type" onChange={this.handleInputChange} error={this.state.typeError}></Form.Input>
+                  <Form.Input label="Recipe Calories" type="text" placeholder="Recipe Calories..." name="extra" onChange={this.handleInputChange} error={this.state.extraError}></Form.Input>
                   <Form.Input label="Recipe Link" type="text" placeholder="Recipe Link..." name="link" onChange={this.handleInputChange} error={this.state.linkError}></Form.Input>
                   <Form.Input label="Recipe Image Src" type="text" placeholder="Recipe Image Src..." name="src" onChange={this.handleInputChange} error={this.state.srcError}></Form.Input>
-                  <Form.Input label="Recipe Type" type="text" placeholder="Recipe Type..." name="type" onChange={this.handleInputChange} error={this.state.typeError}></Form.Input>
                   <Popup content={this.state.popupContent} className={this.state.submitError ? 'error' : 'success'} open={this.state.submitShow} on="click" position="top center" trigger={<Form.Button className="form-submit-button" align="right" color="green" content='Submit Recipe' />} />
                 </div>
               </Form>

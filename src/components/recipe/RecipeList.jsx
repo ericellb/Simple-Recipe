@@ -23,6 +23,7 @@ export class RecipeList extends Component {
             src={data.src}
             title={data.title}
             description={data.description}
+            extra={data.extra}
           />
         )
       });
