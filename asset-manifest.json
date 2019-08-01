@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/simple-recipe/static/css/main.229e5662.chunk.css",
+    "main.js": "/simple-recipe/static/js/main.bc15cb0a.chunk.js",
+    "main.js.map": "/simple-recipe/static/js/main.bc15cb0a.chunk.js.map",
+    "runtime~main.js": "/simple-recipe/static/js/runtime~main.a9e32fc6.js",
+    "runtime~main.js.map": "/simple-recipe/static/js/runtime~main.a9e32fc6.js.map",
+    "static/css/2.75a4e6fe.chunk.css": "/simple-recipe/static/css/2.75a4e6fe.chunk.css",
+    "static/js/2.cdb58791.chunk.js": "/simple-recipe/static/js/2.cdb58791.chunk.js",
+    "static/js/2.cdb58791.chunk.js.map": "/simple-recipe/static/js/2.cdb58791.chunk.js.map",
+    "index.html": "/simple-recipe/index.html",
+    "precache-manifest.1f01fd594ab9402c4f71fab169e41384.js": "/simple-recipe/precache-manifest.1f01fd594ab9402c4f71fab169e41384.js",
+    "service-worker.js": "/simple-recipe/service-worker.js",
+    "static/css/2.75a4e6fe.chunk.css.map": "/simple-recipe/static/css/2.75a4e6fe.chunk.css.map",
+    "static/css/main.229e5662.chunk.css.map": "/simple-recipe/static/css/main.229e5662.chunk.css.map",
+    "static/media/semantic.less": "/simple-recipe/static/media/outline-icons.ef60a4f6.woff"
+  }
+}
