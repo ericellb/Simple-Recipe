@@ -37,13 +37,14 @@
   position: absolute;
   width: 100%;
   top: 0px;
-  padding: 2vw;
+  padding: calc(4px + 6 * ((100vw - 320px) / 680));
   color: #eeeeee;
-  font-size: 30px;
+  font-size: calc(14px + 6 * ((100vw - 320px) / 680));
 }
 
 .text-overlay h1 {
-  font-size: 46px;
+  font-size: calc(22px + 6 * ((100vw - 320px) / 680));
+  margin-bottom: 8px;
 }
 
 

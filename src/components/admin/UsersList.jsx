@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { List, Button, Icon, Modal, Header } from 'semantic-ui-react';
+import { List, Button, Icon, Modal } from 'semantic-ui-react';
 
 export class UsersList extends Component {
 
@@ -97,6 +97,19 @@ export class UsersList extends Component {
     }
   }
 
+  renderButtons = () => {
+    return (
+      <div>
+        <Button basic color='red' inverted onClick={() => this.handleModalConfirm(false)}>
+          <Icon name='remove' /> No
+      </Button>
+        <Button color='green' inverted onClick={() => this.handleModalConfirm(true)}>
+          <Icon name='checkmark' /> Yes
+      </Button>
+      </div>
+    )
+  }
+
   render() {
     return (
       <div>
@@ -114,22 +127,7 @@ export class UsersList extends Component {
           })}
         </List>
 
-        <Modal open={this.state.modalShow} basic size='small'>
-          <Header icon='user secret' content='Admin Confirmation' />
-          <Modal.Content>
-            <p>
-              {this.state.modalText}
-            </p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button basic color='red' inverted onClick={() => this.handleModalConfirm(false)}>
-              <Icon name='remove' /> No
-            </Button>
-            <Button color='green' inverted onClick={() => this.handleModalConfirm(true)}>
-              <Icon name='checkmark' /> Yes
-            </Button>
-          </Modal.Actions>
-        </Modal>
+        <Modal open={this.state.modalShow} basic size='small' header={'Admin Confirmation'} content={this.state.modalText} actions={this.renderButtons} />
 
       </div >
 
