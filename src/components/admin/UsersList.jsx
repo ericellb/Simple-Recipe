@@ -32,7 +32,6 @@ export class UsersList extends Component {
   }
 
   delFromAdmins = async (newAdminId) => {
-    console.log(newAdminId);
     const { userId } = this.props;
     const res = await axios.delete(`http://localhost:3001/admin?userId=${userId}&newAdminId=${newAdminId}`);
     return res;
@@ -74,7 +73,6 @@ export class UsersList extends Component {
   }
 
   handleUserOnClick = async (user, action) => {
-    console.log(user);
     if (action === 'add') {
       this.setState({
         modalShow: true,

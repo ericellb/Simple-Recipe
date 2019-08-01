@@ -6,7 +6,6 @@ export class RecipeCard extends Component {
   // On first call
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       link: props.link,
       id: props.id,
@@ -19,7 +18,6 @@ export class RecipeCard extends Component {
 
   // Recipe card update data
   componentDidUpdate = (prevProps) => {
-    console.log(this.props);
     if (this.props !== prevProps) {
       this.setState({
         link: this.props.link,
@@ -33,7 +31,6 @@ export class RecipeCard extends Component {
   }
 
   renderButtons = () => {
-    console.log(this.state.id);
     if (this.state.buttons) {
       return (
         <div>

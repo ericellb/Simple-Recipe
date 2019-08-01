@@ -41,23 +41,31 @@ export class SearchBar extends Component {
         this.props.fetchRecipe(this.state.id);
     }
     if (prevState.cuisineType !== this.state.cuisineType) {
-      this.props.fetchRecipes(this.state.cuisineType, null);
+      if (this.state.cuisineType !== null)
+        this.props.fetchRecipes(this.state.cuisineType, null);
     }
     if (prevState.foodType !== this.state.foodType) {
-      this.props.fetchRecipes(null, this.state.foodType)
+      if (this.state.foodType !== null)
+        this.props.fetchRecipes(null, this.state.foodType)
     }
   }
 
   handleCuisineOnChange = (e, { value }) => {
     this.setState({ cuisineType: value });
+    this.setState({ foodType: null });
+    this.setState({ id: null });
   }
 
   handleFoodTypeOnClick = (value) => {
-    this.setState({ foodType: value })
+    this.setState({ foodType: value });
+    this.setState({ cuisineType: null });
+    this.setState({ id: null });
   }
 
   handleResultSelect = (e, { result }) => {
-    this.setState({ id: result._id })
+    this.setState({ id: result._id });
+    this.setState({ foodType: null });
+    this.setState({ cuisineType: null });
   }
 
   handleSearchChange = (e, { value }) => {
