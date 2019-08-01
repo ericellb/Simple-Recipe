@@ -1,7 +1,7 @@
 {
   "name": "simple-recipe",
   "version": "0.1.0",
-  "homepage": "http://shmeegie.github.io/Simple-Recipe",
+  "homepage": "http://ericellb.github.io/Simple-Recipe",
   "private": true,
   "dependencies": {
     "@types/jest": "^24.0.15",

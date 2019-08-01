@@ -110,23 +110,23 @@ export class SearchBar extends Component {
           </div>
           <div className="icons">
             <div className="icon-container" onClick={() => this.handleFoodTypeOnClick('chicken')}>
-              <Image src="/icons/chicken.png"></Image>
+              <Image src="icons/chicken.png"></Image>
               <p className="horizontal-align"> Chicken </p>
             </div>
             <div className="icon-container" onClick={() => this.handleFoodTypeOnClick('beef')}>
-              <Image src="/icons/beef.png"></Image>
+              <Image src="icons/beef.png"></Image>
               <p className="horizontal-align"> Beef </p>
             </div>
             <div className="icon-container" onClick={() => this.handleFoodTypeOnClick('pork')}>
-              <Image src="/icons/pork.png"></Image>
+              <Image src="icons/pork.png"></Image>
               <p className="horizontal-align"> Pork </p>
             </div>
             <div className="icon-container" onClick={() => this.handleFoodTypeOnClick('fish')}>
-              <Image src="/icons/fish.png"></Image>
+              <Image src="icons/fish.png"></Image>
               <p className="horizontal-align"> Fish </p>
             </div>
             <div className="icon-container" onClick={() => this.handleFoodTypeOnClick('vegetarian')}>
-              <Image src="/icons/vegetable.png"></Image>
+              <Image src="icons/vegetable.png"></Image>
               <p className="horizontal-align"> Vegetarian </p>
             </div>
           </div>
