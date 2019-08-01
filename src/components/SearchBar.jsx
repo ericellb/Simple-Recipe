@@ -52,7 +52,7 @@ export class SearchBar extends Component {
   }
 
   handleCuisineOnChange = (e, { value }) => {
-    if (createHashHistory.location.pathname !== '/')
+    if (createHashHistory.location.hash !== '/')
       createHashHistory.push('/');
     this.setState({ cuisineType: value });
     this.setState({ foodType: null });
@@ -60,7 +60,7 @@ export class SearchBar extends Component {
   }
 
   handleFoodTypeOnClick = (value) => {
-    if (createHashHistory.location.pathname !== '/')
+    if (createHashHistory.location.hash !== '/')
       createHashHistory.push('/');
     this.setState({ foodType: value });
     this.setState({ cuisineType: null });
@@ -68,7 +68,7 @@ export class SearchBar extends Component {
   }
 
   handleResultSelect = (e, { result }) => {
-    if (createHashHistory.location.pathname !== '/')
+    if (createHashHistory.location.hash !== '/')
       createHashHistory.push('/');
     this.setState({ id: result._id });
     this.setState({ foodType: null });
