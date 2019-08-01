@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import createBrowserHistory from '../../history';
+import createHashHistory from '../../history';
 import './admin.css';
 import UsersList from './UsersList';
 import SubmissionList from './SubmissionList';
@@ -11,13 +11,13 @@ export class AdminPanel extends Component {
   componentDidMount = () => {
     // If user not admin, send to main page
     if (!this.props.isAdmin)
-      createBrowserHistory.push('/');
+      createHashHistory.push('/');
   }
 
   componentDidUpdate = (prevProps, prevState) => {
     // Redirect user to main page (if user logs out on admin panel)
     if (prevProps.isAdmin !== this.props.isAdmin) {
-      createBrowserHistory.push('/');
+      createHashHistory.push('/');
     }
   }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Router, Route } from 'react-router-dom';
-import createBrowserHistory from '../history';
+import { HashRouter, Route } from 'react-router-dom';
+import createHashHistory from '../history';
 
 import Header from './Header';
 import TitleSection from './TitleSection';
@@ -17,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Router history={createBrowserHistory}>
+        <HashRouter history={createHashHistory}>
           <Header></Header>
           <TitleSection></TitleSection>
           <SearchBar></SearchBar>
@@ -25,7 +25,7 @@ class App extends Component {
           <Route path="/recipe/submit" exact component={RecipeSubmit} />
           <Route path="/" exact component={RecipeList} />
           <Route path="/admin" exact component={AdminPanel} />
-        </Router>
+        </HashRouter>
       </div>
     )
   }

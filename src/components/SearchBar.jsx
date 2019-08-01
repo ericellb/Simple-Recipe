@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Image, Segment, Dropdown, Search } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import createBrowserHistory from '../history';
+import createHashHistory from '../history';
 
 import { fetchRecipe, fetchRecipes, fetchDictionary } from '../actions';
 
@@ -52,24 +52,24 @@ export class SearchBar extends Component {
   }
 
   handleCuisineOnChange = (e, { value }) => {
-    if (createBrowserHistory.location.pathname !== '/')
-      createBrowserHistory.push('/');
+    if (createHashHistory.location.pathname !== '/')
+      createHashHistory.push('/');
     this.setState({ cuisineType: value });
     this.setState({ foodType: null });
     this.setState({ id: null });
   }
 
   handleFoodTypeOnClick = (value) => {
-    if (createBrowserHistory.location.pathname !== '/')
-      createBrowserHistory.push('/');
+    if (createHashHistory.location.pathname !== '/')
+      createHashHistory.push('/');
     this.setState({ foodType: value });
     this.setState({ cuisineType: null });
     this.setState({ id: null });
   }
 
   handleResultSelect = (e, { result }) => {
-    if (createBrowserHistory.location.pathname !== '/')
-      createBrowserHistory.push('/');
+    if (createHashHistory.location.pathname !== '/')
+      createHashHistory.push('/');
     this.setState({ id: result._id });
     this.setState({ foodType: null });
     this.setState({ cuisineType: null });
