@@ -1,12 +1,12 @@
 import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT, GET_ADMIN } from '../actions/types';
 import axios from 'axios';
 
-const baseUrl = 'https://simple-recipe-api.herokuapp.com';
+const baseUrl = (process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://simple-recipe-api.herokuapp.com');
 
 export const signIn = (userId, name, email) => async (dispatch) => {
 
   let url = `${baseUrl}/users?userId=${userId}&name=${name}&email=${email}`;
-  const res = await axios.post(url);
+  await axios.post(url);
   dispatch({ type: SIGN_IN, payload: userId });
 };
 

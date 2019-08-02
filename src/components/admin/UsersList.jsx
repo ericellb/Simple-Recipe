@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { List, Button, Icon, Modal } from 'semantic-ui-react';
 
-const baseUrl = 'https://simple-recipe-api.herokuapp.com';
+const baseUrl = (process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://simple-recipe-api.herokuapp.com');
 
 export class UsersList extends Component {
 
@@ -118,7 +118,7 @@ export class UsersList extends Component {
         <List celled relaxed verticalAlign='middle'>
           {this.state.users.map((user) => {
             return (
-              <div className="user-list-container">
+              <div className="user-list-container" key={user.userId}>
                 {this.isUserAdmin(user) ? <Icon size='large' name='user secret'></Icon> : <Icon size='large' name='user'></Icon>}
                 <div>{user.email}</div>
                 {this.isUserAdmin(user) ? <Button onClick={() => this.handleUserOnClick(user, 'delete')} color="red" className="admin-button" floated="right">Delete</Button> : <Button onClick={() => this.handleUserOnClick(user, 'add')} color="green" className="admin-button" floated="right">Add</Button>}

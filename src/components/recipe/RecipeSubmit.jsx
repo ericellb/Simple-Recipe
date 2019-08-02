@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Card, Container, Image, Form, Popup } from 'semantic-ui-react';
 import axios from 'axios';
 
-const baseUrl = 'https://simple-recipe-api.herokuapp.com';
+const baseUrl = (process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://simple-recipe-api.herokuapp.com');
 
 export class RecipeSubmit extends Component {
 

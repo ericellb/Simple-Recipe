@@ -17,6 +17,7 @@ export class RecipeList extends Component {
       return this.props.recipes.recipes.map(data => {
         return (
           <RecipeCard
+            key={data._id}
             className="card-container"
             link={data.link}
             id={data._id}

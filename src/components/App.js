@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import createHashHistory from '../history';
 
 import Header from './Header';
 import TitleSection from './TitleSection';
@@ -17,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <HashRouter history={createHashHistory}>
+        <HashRouter>
           <Header></Header>
           <TitleSection></TitleSection>
           <SearchBar></SearchBar>

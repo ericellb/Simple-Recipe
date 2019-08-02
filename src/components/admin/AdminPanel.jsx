@@ -4,7 +4,6 @@ import createHashHistory from '../../history';
 import './admin.css';
 import UsersList from './UsersList';
 import SubmissionList from './SubmissionList';
-import RateList from './RateList';
 
 export class AdminPanel extends Component {
 

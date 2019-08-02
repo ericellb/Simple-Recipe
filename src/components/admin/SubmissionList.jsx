@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios';
 
 import RecipeCard from '../recipe/RecipeCard';
-import { Card, Modal, Button, Icon, Container } from 'semantic-ui-react';
+import { Card, Modal, Button, Icon } from 'semantic-ui-react';
 
-const baseUrl = 'https://simple-recipe-api.herokuapp.com';
+const baseUrl = (process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://simple-recipe-api.herokuapp.com');
 
 export class SubmissionList extends Component {
 
@@ -81,6 +81,7 @@ export class SubmissionList extends Component {
       return this.state.recipes.map(data => {
         return (
           <RecipeCard
+            key={data._id}
             className="card-container"
             link={data.link}
             id={data._id}

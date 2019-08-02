@@ -53,9 +53,9 @@ export class RecipeCard extends Component {
   }
 
   render() {
-    const { link, _id, src, title, description, extra } = this.state;
+    const { link, src, title, description } = this.state;
     return (
-      <Card key={_id}>
+      <Card>
         <Image href={link} target="_blank" src={src} ui />
         <Card.Content>
           <Card.Header href={link} target="_blank">{title}</Card.Header>
