@@ -5,16 +5,25 @@
   margin-right: 10px;
 }
 
-.header-button {
-  margin-left: 10px !important;
+.login-button {
   font-size: 15px !important;
+  cursor: pointer;
 }
 
-@media only screen and (max-width: 607px) {
-  .header-button {
-    font-size: calc(11px + 6 * ((100vw - 500px) / 172)) !important;
+@media only screen and (max-width: 360px) {
+  .login-button {
+    font-size: 12px !important;
   }
 }
+
+.menu.transition {
+  background: #1A1C1D !important;
+}
+
+.item span, .item i {
+  color: white !important;
+}
+
 
 
 /* TitleSection.jsx */
@@ -90,9 +99,10 @@
 
 .icon-container {
   margin-right: 16px;
-  min-width: 72px;
+  min-width: 66px;
   text-align: center;
   cursor: pointer;
+  font-size: 14px;
 }
 
 @media only screen and (max-width: 898px) {
@@ -111,6 +121,37 @@
     justify-content: center;
     flex-basis: 50%;
     order:1;
+  }
+}
+
+@media only screen and (max-width: 462px) {
+  .search-cuisine {
+    justify-content: center;
+    flex-basis: 100%;
+    order:2;
+  }
+  .icons {
+    flex-basis: 100%;
+    padding-bottom: 16px;
+    order:3;
+  }
+  .search-recipe {
+    justify-content: center;
+    flex-basis: 100%;
+    order:1;
+    padding-bottom: 16px;
+  }
+
+  .icon-container {
+    margin-right: 16px;
+    min-width: 36px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  .ui.right.aligned.search {
+    max-width: 196px;
   }
 }
 

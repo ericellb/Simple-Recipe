@@ -21,7 +21,7 @@ class App extends Component {
           <TitleSection></TitleSection>
           <SearchBar></SearchBar>
           <Footer></Footer>
-          <Route path="/recipe/submit" exact component={RecipeSubmit} />
+          <Route path="/submit" exact component={RecipeSubmit} />
           <Route path="/" exact component={RecipeList} />
           <Route path="/admin" exact component={AdminPanel} />
         </HashRouter>
