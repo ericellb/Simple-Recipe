@@ -1,13 +1,11 @@
 import { FETCH_RECIPES, FETCH_RECIPE, FETCH_DICTIONARY, SIGN_IN, SIGN_OUT, GET_ADMIN } from '../actions/types';
 import axios from 'axios';
 
+const baseUrl = 'https://simple-recipe-api.herokuapp.com';
+
 export const signIn = (userId, name, email) => async (dispatch) => {
-  const response = await getClientIP();
-  let url = '';
-  if (response.data.ip === "66.131.255.235")
-    url = `http://localhost:3001/users?userId=${userId}&name=${name}&email=${email}`;
-  else
-    url = `http://localhost:3001/users?userId=${userId}`
+
+  let url = `${baseUrl}/users?userId=${userId}&name=${name}&email=${email}`;
   const res = await axios.post(url);
   dispatch({ type: SIGN_IN, payload: userId });
 };
@@ -18,51 +16,25 @@ export const signOut = (userId) => ({
 });
 
 export const getAdmin = (userId) => async (dispatch) => {
-  const response = await getClientIP();
-  let url = '';
-  if (response.data.ip === "66.131.255.235")
-    url = `http://localhost:3001/auth?userId=${userId}`;
-  else
-    url = `http://localhost:3001/auth?userId=${userId}`
+  let url = `${baseUrl}/auth?userId=${userId}`
   const res = await axios.get(url);
   dispatch({ type: GET_ADMIN, payload: res.data });
 }
 
 export const fetchRecipes = (cuisineType, foodType) => async (dispatch) => {
-  // REMOVE WHEN DEPLOY (Shitty 'feature' with my router and NAT Loopback)
-  const response = await getClientIP();
-  let url = '';
-  if (response.data.ip === "66.131.255.235")
-    url = (cuisineType === null ? `http://localhost:3001/recipes?foodType=${foodType}` : `http://localhost:3001/recipes?cuisineType=${cuisineType}`);
-  else
-    url = (cuisineType === null ? `http://66.131.255.235:3001/recipes?foodType=${foodType}` : `http://66.131.255.235:3001/recipes?cuisineType=${cuisineType}`);
+  let url = (cuisineType === null ? `${baseUrl}/recipes?foodType=${foodType}` : `${baseUrl}/recipes?cuisineType=${cuisineType}`);
   const res = await axios.get(url);
   dispatch({ type: FETCH_RECIPES, payload: res.data });
 };
 
 export const fetchRecipe = (recipeId) => async (dispatch) => {
-  const response = await getClientIP();
-  let url = '';
-  if (response.data.ip === "66.131.255.235")
-    url = `http://localhost:3001/recipes?id=${recipeId}`;
-  else
-    url = `http://66.131.255.235:3001/recipes?id=${recipeId}`
+  let url = `${baseUrl}/recipes?id=${recipeId}`
   const res = await axios.get(url);
   dispatch({ type: FETCH_RECIPE, payload: res.data });
 }
 
 export const fetchDictionary = () => async (dispatch) => {
-  // REMOVE WHEN DEPLOY (Shitty 'feature' with my router and NAT Loopback)
-  const response = await getClientIP();
-  let url = '';
-  if (response.data.ip === "66.131.255.235")
-    url = (`http://localhost:3001/recipes?dictionary=1`);
-  else
-    url = (`http://66.131.255.235:3001/recipes?dictionary=1`);
+  let url = (`${baseUrl}/recipes?dictionary=1`);
   const res = await axios.get(url);
   dispatch({ type: FETCH_DICTIONARY, payload: res.data });
-}
-
-const getClientIP = async () => {
-  return axios.get('https://api.ipify.org?format=json');
 }

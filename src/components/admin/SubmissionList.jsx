@@ -4,6 +4,8 @@ import axios from 'axios';
 import RecipeCard from '../recipe/RecipeCard';
 import { Card, Modal, Button, Icon, Container } from 'semantic-ui-react';
 
+const baseUrl = 'https://simple-recipe-api.herokuapp.com';
+
 export class SubmissionList extends Component {
 
   state = {
@@ -18,17 +20,17 @@ export class SubmissionList extends Component {
   }
 
   getSubmissionsList = async () => {
-    const res = await axios.get('http://localhost:3001/recipeSubmissions');
+    const res = await axios.get(`${baseUrl}/recipeSubmissions`);
     this.setState({ recipes: res.data });
   }
 
   addSubmission = async (submissionId) => {
-    const res = await axios.patch(`http://localhost:3001/recipeSubmissions?id=${submissionId}&action=add`);
+    const res = await axios.patch(`${baseUrl}/recipeSubmissions?id=${submissionId}&action=add`);
     return res;
   }
 
   delSubmission = async (submissionId) => {
-    const res = await axios.patch(`http://localhost:3001/recipeSubmissions?id=${submissionId}&action=delete`);
+    const res = await axios.patch(`${baseUrl}/recipeSubmissions?id=${submissionId}&action=delete`);
     return res;
   }
 

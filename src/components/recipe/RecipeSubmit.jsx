@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Card, Container, Image, Form, Popup } from 'semantic-ui-react';
 import axios from 'axios';
 
+const baseUrl = 'https://simple-recipe-api.herokuapp.com';
+
 export class RecipeSubmit extends Component {
 
   state = {
@@ -73,7 +75,7 @@ export class RecipeSubmit extends Component {
   }
 
   handleApiCall = async () => {
-    return axios.post('http://localhost:3001/recipeSubmissions', {
+    return axios.post(`${baseUrl}/recipeSubmissions`, {
       params: {
         title: this.state.title,
         description: this.state.description,

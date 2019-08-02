@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { List, Button, Icon, Modal } from 'semantic-ui-react';
 
+const baseUrl = 'https://simple-recipe-api.herokuapp.com';
+
 export class UsersList extends Component {
 
   state = {
@@ -15,25 +17,25 @@ export class UsersList extends Component {
 
   getListOfUsers = async () => {
     const { userId } = this.props;
-    const res = await axios.get(`http://localhost:3001/users?userId=${userId}`);
+    const res = await axios.get(`${baseUrl}/users?userId=${userId}`);
     this.setState({ users: res.data });
   }
 
   getListOfAdmins = async () => {
     const { userId } = this.props;
-    const res = await axios.get(`http://localhost:3001/admin?userId=${userId}`);
+    const res = await axios.get(`${baseUrl}/admin?userId=${userId}`);
     this.setState({ admins: res.data });
   }
 
   addToAdmins = async (newAdminId) => {
     const { userId } = this.props;
-    const res = await axios.post(`http://localhost:3001/admin?userId=${userId}&newAdminId=${newAdminId}`);
+    const res = await axios.post(`${baseUrl}/admin?userId=${userId}&newAdminId=${newAdminId}`);
     return res;
   }
 
   delFromAdmins = async (newAdminId) => {
     const { userId } = this.props;
-    const res = await axios.delete(`http://localhost:3001/admin?userId=${userId}&newAdminId=${newAdminId}`);
+    const res = await axios.delete(`${baseUrl}/admin?userId=${userId}&newAdminId=${newAdminId}`);
     return res;
   }
 
