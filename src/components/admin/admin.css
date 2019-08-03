@@ -1,16 +1,37 @@
 .admin-flex-container {
   display: flex;
   justify-content: space-between;
-  padding: 16px;
   box-sizing: border-box;
   flex-wrap: wrap;
   align-items: flex-start;
   margin-bottom: 44px;
+  padding: 16px;
 }
 
 .image img {
   max-width: 290px !important;
   max-height: 194px !important;
+}
+
+@media only screen and (max-width: 390px) {
+
+  .admin-flex-container {
+    margin: 0.5em;
+    margin-bottom: 44px;
+    padding: 0px;
+  }
+
+  .ui.card {
+    max-width: 240px !important;
+  }
+
+  .users-list {
+    font-size: 13px !important;
+  }
+
+  .admin-button {
+    font-size: 13px !important;
+  }
 }
 
 .flex-item {
@@ -26,18 +47,15 @@
 
 .users-list {
   flex:1;
-  min-width: 212.25px;
   text-align: center;
 }
 
 .submission-list {
   flex:2;
-  min-width: 392.5px;
 }
 
 .rate-limit-list {
   flex:1;
-  min-width: 212.25px;
 }
 
 

@@ -34,7 +34,7 @@ export class RecipeList extends Component {
   render() {
     return (
       <Container fluid className="recipe-list">
-        <Card.Group centered>
+        <Card.Group centered className="recipe-card-group">
           {this.renderRecipeList()}
         </Card.Group>
       </Container>

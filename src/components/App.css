@@ -16,14 +16,6 @@
   }
 }
 
-.menu.transition {
-  background: #1A1C1D !important;
-}
-
-.item span, .item i {
-  color: white !important;
-}
-
 
 
 /* TitleSection.jsx */
@@ -33,7 +25,7 @@
 }
 
 .title-image {
-  max-height: 240px;
+  max-height: 320px;
   display: block;
 }
 
@@ -50,7 +42,7 @@
   position: absolute;
   width: 100%;
   top: 0px;
-  padding: calc(4px + 6 * ((100vw - 320px) / 680));
+  padding: calc(18px + 6 * ((100vw - 320px) / 680));
   color: #eeeeee;
   font-size: calc(14px + 6 * ((100vw - 320px) / 680));
 }
@@ -175,6 +167,10 @@
 
 .recipe-list {
   margin-bottom: 64px;
+}
+
+.recipe-card-group {
+  min-height: 410px !important;
 }
 
 .submission-section {
