@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Button, Icon, Image, Popup } from 'semantic-ui-react';
+import { Card, Button, Icon, Image, Popup, Transition } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import axios from 'axios';
@@ -22,8 +22,13 @@ export class RecipeCard extends Component {
       buttons: props.buttons,
       ratingStars: [],
       popupShow: false,
-      popupContent: null
+      popupContent: null,
+      popupShow: false,
+      visible: false
     }
+    setTimeout(() => {
+      this.setState({ visible: true })
+    })
   }
 
   componentDidMount = () => {
@@ -47,8 +52,8 @@ export class RecipeCard extends Component {
     }
   }
 
-
   handleRateRecipe = async (userRating) => {
+    this.setState({ popupShow: true });
     if (this.props.isSignedIn) {
       const res = await axios.patch(`${baseUrl}/recipes?userId=${this.props.userId}&recipeId=${this.state.id}&rating=${userRating}`);
       if (res.status === 200) {
@@ -61,6 +66,10 @@ export class RecipeCard extends Component {
     }
     else
       this.setState({ popupContent: 'Please Sign in to rate recipes!' })
+
+    setTimeout(() => {
+      this.setState({ popupShow: false });
+    }, 2500);
   }
 
   renderRating = (userRating) => {
@@ -87,6 +96,7 @@ export class RecipeCard extends Component {
         <Popup
           content={this.state.popupContent}
           trigger={<div>{this.state.ratingStars}</div>}
+          open={this.state.popupShow}
           on='click'
           position='right center'
           hideOnScroll
@@ -99,21 +109,22 @@ export class RecipeCard extends Component {
   }
 
   render() {
-    const { link, src, title, description } = this.state;
+    const { link, src, title, description, visible } = this.state;
     return (
-      <Card>
-        <Image href={link} target="_blank" src={src} ui />
-        <Card.Content>
-          <Card.Header href={link} target="_blank">{title}</Card.Header>
-          <Card.Description>
-            {description}
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          {this.renderExtra()}
-        </Card.Content>
-      </Card>
-
+      <Transition visible={visible} animation='horizontal flip' duration={500}>
+        <Card>
+          <Image href={link} target="_blank" src={src} ui />
+          <Card.Content>
+            <Card.Header href={link} target="_blank">{title}</Card.Header>
+            <Card.Description>
+              {description}
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            {this.renderExtra()}
+          </Card.Content>
+        </Card>
+      </Transition>
     )
   }
 }

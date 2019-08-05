@@ -32,7 +32,7 @@ export class FilterRecipes extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     if (prevState.foodFilter !== this.state.foodFilter) {
       if (this.state.foodType !== null)
-        this.props.fetchRecipes(this.state.foodFilter)
+        this.props.fetchRecipes(this.state.foodFilter, null, true)
     }
   }
 

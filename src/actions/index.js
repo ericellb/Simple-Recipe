@@ -21,10 +21,11 @@ export const getAdmin = (userId) => async (dispatch) => {
   dispatch({ type: GET_ADMIN, payload: res.data });
 }
 
-export const fetchRecipes = (foodFilter) => async (dispatch) => {
-  let url = `${baseUrl}/recipes?foodFilter=${foodFilter}`;
+export const fetchRecipes = (foodFilter, from, newFetch) => async (dispatch) => {
+  if (!from) from = 0
+  let url = `${baseUrl}/recipes?foodFilter=${foodFilter}&from=${from}`;
   const res = await axios.get(url);
-  dispatch({ type: FETCH_RECIPES, payload: res.data });
+  dispatch({ type: FETCH_RECIPES, payload: res.data, newFetch: newFetch });
 };
 
 export const fetchRecipe = (recipeId) => async (dispatch) => {

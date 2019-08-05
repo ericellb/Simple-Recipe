@@ -109,6 +109,12 @@
   margin-top: 8px;
 }
 
+.recipe-list-load-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8px;
+}
+
 /* RecipeCard.jsx */
 .card-extra {
   display: flex;

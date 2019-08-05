@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import createHashHistory from '../history';
 
-import { fetchRecipe, fetchRecipes, fetchDictionary } from '../actions';
+import { fetchRecipe, fetchDictionary } from '../actions';
 
 const initialState = {
   isLoading: false,
@@ -85,6 +85,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { fetchRecipes, fetchRecipe, fetchDictionary })(SearchRecipes);
+export default connect(mapStateToProps, { fetchRecipe, fetchDictionary })(SearchRecipes);
 
 

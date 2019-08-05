@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Container, Loader } from 'semantic-ui-react';
+import { Card, Container, Loader, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import { fetchRecipes } from '../../actions'
@@ -19,6 +19,13 @@ export class RecipeList extends Component {
     if (prevProps !== this.props) {
       this.setState({ loading: false });
     }
+  }
+
+  handleLoadMoreRecipes = () => {
+    const from = this.props.recipes.recipes.length
+    const type = this.props.recipes.recipes[0].type;
+    console.log(type);
+    this.props.fetchRecipes(type, from, false);
   }
 
   renderRecipeList() {
@@ -48,6 +55,9 @@ export class RecipeList extends Component {
         <Card.Group centered className="recipe-card-group">
           {this.renderRecipeList()}
         </Card.Group>
+        <div className="recipe-list-load-container">
+          <Button size="massive" onClick={this.handleLoadMoreRecipes}>Load more...</Button>
+        </div>
       </Container>
     )
   }
