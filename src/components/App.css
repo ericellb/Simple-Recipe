@@ -182,4 +182,13 @@
   .ui.card {
     max-width: 140px !important;
   }
+
+  .top-menu-title {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  .recipe-list {
+    margin: 0;
+  }
 }

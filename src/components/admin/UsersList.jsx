@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { List, Button, Icon, Modal } from 'semantic-ui-react';
+import { List, Button, Icon, Modal, Popup } from 'semantic-ui-react';
 
 const baseUrl = (process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://simple-recipe-api.herokuapp.com');
 
@@ -10,9 +10,9 @@ export class UsersList extends Component {
   state = {
     users: [],
     admins: [],
-    modalText: null,
-    modalShow: false,
-    modalAction: null
+    popupContent: null,
+    popupAction: null,
+    popupShow: false
   }
 
   getListOfUsers = async () => {
@@ -56,30 +56,31 @@ export class UsersList extends Component {
     return isAdmin;
   }
 
-  handleModalConfirm = async (confirmation) => {
-    const { type, userId } = this.state.modalAction;
+  handlePopupClose = () => {
+    setTimeout(() => {
+      this.setState({ popupShow: false });
+    }, 2500)
+  }
+
+  handlePopupConfirm = async (confirmation) => {
+    const { type, userId } = this.state.popupAction;
     if (confirmation) {
       if (type === 'add') {
         await this.addToAdmins(userId);
         await this.getListOfAdmins();
-        this.setState({ modalShow: false });
       }
       else if (type === 'del') {
         await this.delFromAdmins(userId);
         await this.getListOfAdmins();
-        this.setState({ modalShow: false });
       }
     }
-    else
-      this.setState({ modalShow: false });
   }
 
   handleUserOnClick = async (user, action) => {
     if (action === 'add') {
       this.setState({
-        modalShow: true,
-        modalText: `Are you sure you want to add ${user.email} to Admins?`,
-        modalAction: {
+        popupContent: `Are you sure you want to add ${user.email} to Admins?`,
+        popupAction: {
           type: 'add',
           userId: user.userId
         }
@@ -87,9 +88,8 @@ export class UsersList extends Component {
     }
     else if (action === 'delete') {
       this.setState({
-        modalShow: true,
-        modalText: `Are you sure you want to remove ${user.email} from Admins ?`,
-        modalAction: {
+        popupContent: `Are you sure you want to remove ${user.email} from Admins ?`,
+        popupAction: {
           type: 'del',
           userId: user.userId
         }
@@ -99,13 +99,16 @@ export class UsersList extends Component {
 
   renderButtons = () => {
     return (
-      <div>
-        <Button basic color='red' inverted onClick={() => this.handleModalConfirm(false)}>
-          <Icon name='remove' /> No
-      </Button>
-        <Button color='green' inverted onClick={() => this.handleModalConfirm(true)}>
-          <Icon name='checkmark' /> Yes
-      </Button>
+      <div className="popup-container">
+        <div className="admin-popup-content">{this.state.popupContent}</div>
+        <div className="admin-popup-buttons">
+          <Button color='red' onClick={() => this.handlePopupConfirm(false)}>
+            <Icon name='remove' /> No
+          </Button>
+          <Button color='green' onClick={() => this.handlePopupConfirm(true)}>
+            <Icon name='checkmark' /> Yes
+          </Button>
+        </div>
       </div>
     )
   }
@@ -121,14 +124,17 @@ export class UsersList extends Component {
               <div className="user-list-container" key={user.userId}>
                 {this.isUserAdmin(user) ? <Icon size='large' name='user secret'></Icon> : <Icon size='large' name='user'></Icon>}
                 <div>{user.email}</div>
-                {this.isUserAdmin(user) ? <Button onClick={() => this.handleUserOnClick(user, 'delete')} color="red" className="admin-button" floated="right">Delete</Button> : <Button onClick={() => this.handleUserOnClick(user, 'add')} color="green" className="admin-button" floated="right">Add</Button>}
+                <Popup
+                  content={this.renderButtons}
+                  trigger={this.isUserAdmin(user) ? <Button onClick={() => this.handleUserOnClick(user, 'delete')} color="red" className="admin-button" floated="right">Delete</Button> : <Button onClick={() => this.handleUserOnClick(user, 'add')} color="green" className="admin-button" floated="right">Add</Button>}
+                  on='click'
+                  position='right center'
+                  hideOnScroll
+                />
               </div>
             )
           })}
         </List>
-
-        <Modal open={this.state.modalShow} basic size='small' header={'Admin Confirmation'} content={this.state.modalText} actions={this.renderButtons} />
-
       </div >
 
     )

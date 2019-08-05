@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Button, Icon, Image } from 'semantic-ui-react';
+import { Card, Button, Icon, Image, Popup } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import axios from 'axios';
@@ -20,7 +20,9 @@ export class RecipeCard extends Component {
       extra: props.extra,
       rating: props.rating,
       buttons: props.buttons,
-      ratingStars: []
+      ratingStars: [],
+      popupShow: false,
+      popupContent: null
     }
   }
 
@@ -51,9 +53,14 @@ export class RecipeCard extends Component {
       const res = await axios.patch(`${baseUrl}/recipes?userId=${this.props.userId}&recipeId=${this.state.id}&rating=${userRating}`);
       if (res.status === 200) {
         const tempRatingStars = this.renderRating(userRating);
+        this.setState({ popupContent: `Recipe rated ${userRating} star(s) ` });
         this.setState({ ratingStars: tempRatingStars });
       }
+      else
+        this.setState({ popupContent: 'Database error, please try again later!' });
     }
+    else
+      this.setState({ popupContent: 'Please Sign in to rate recipes!' })
   }
 
   renderRating = (userRating) => {
@@ -77,9 +84,13 @@ export class RecipeCard extends Component {
         <div>
           {this.state.extra}
         </div>
-        <div>
-          {this.state.ratingStars}
-        </div>
+        <Popup
+          content={this.state.popupContent}
+          trigger={<div>{this.state.ratingStars}</div>}
+          on='click'
+          position='right center'
+          hideOnScroll
+        />
         {this.state.buttons ? <div className="submission-section"><Button color="green" onClick={() => this.props.onClick(this.state.id, 'add')}>Approve</Button>
           <Button color="red" onClick={() => this.props.onClick(this.state.id, 'delete')}>Deny</Button>
         </div> : ''}

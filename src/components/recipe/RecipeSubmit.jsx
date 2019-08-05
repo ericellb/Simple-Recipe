@@ -1,10 +1,26 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Card, Container, Image, Form, Popup } from 'semantic-ui-react';
 import axios from 'axios';
+import createHashHistory from '../../history';
 
 const baseUrl = (process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://simple-recipe-api.herokuapp.com');
 
 export class RecipeSubmit extends Component {
+
+
+  componentDidMount = () => {
+    // If user not admin, send to main page
+    if (!this.props.isAdmin)
+      createHashHistory.push('/');
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    // Redirect user to main page (if user logs out on admin panel)
+    if (prevProps.isAdmin !== this.props.isAdmin) {
+      createHashHistory.push('/');
+    }
+  }
 
   state = {
     title: null,
@@ -125,4 +141,10 @@ export class RecipeSubmit extends Component {
   }
 }
 
-export default RecipeSubmit
+const mapStateToProps = (state) => {
+  return {
+    isAdmin: state.auth.isAdmin
+  }
+}
+
+export default connect(mapStateToProps)(RecipeSubmit);

@@ -7,30 +7,6 @@ import SearchRecipes from './SearchRecipes';
 import FilterRecipes from './FilterRecipes';
 import { getAdmin, signIn, signOut } from '../actions';
 
-let dropdownOptions = [
-  {
-    key: 'home',
-    text: 'Home',
-    value: 'home',
-    icon: 'home'
-  }
-]
-
-let optionsSignedIn = [
-  {
-    key: 'submit',
-    text: 'Submit Recipe',
-    value: 'submit',
-    icon: 'edit'
-  },
-  {
-    key: 'admin',
-    text: 'Admin Panel',
-    value: 'admin',
-    icon: 'user secret'
-  }
-]
-
 export class Header extends Component {
 
   state = {
@@ -69,17 +45,12 @@ export class Header extends Component {
   }
 
   onAuthChange = (isSignedIn) => {
-    const { Eea, ig, U3 } = this.auth.currentUser.get().getBasicProfile();
     if (isSignedIn) {
+      const { Eea, ig, U3 } = this.auth.currentUser.get().getBasicProfile();
       this.props.signIn(Eea, ig, U3);
-      dropdownOptions.push(optionsSignedIn[0]);
-      dropdownOptions.push(optionsSignedIn[1]);
     }
-    else {
+    else
       this.props.signOut(this.auth.currentUser.get().getId());
-      dropdownOptions.pop();
-      dropdownOptions.pop();
-    }
   }
 
 
@@ -102,18 +73,16 @@ export class Header extends Component {
   }
 
   handleItemClick = (e, { name }) => {
+    this.handleSideBarHide();
     this.handleNavigation(name);
   }
 
-  mobileMenuChange = (e, { name, value }) => {
-    this.handleNavigation(value);
+  handleSideBarShow = () => {
+    this.setState({ sidebarVisible: true })
   }
 
-  handleSidebarToggle = () => {
-    if (this.state.sidebarVisible)
-      this.setState({ sidebarVisible: false });
-    else
-      this.setState({ sidebarVisible: true })
+  handleSideBarHide = () => {
+    this.setState({ sidebarVisible: false });
   }
 
   // <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}></Menu.Item>
@@ -127,7 +96,7 @@ export class Header extends Component {
       <div>
         <Responsive as={Menu} minWidth={853} attached borderless className="top-menu">
           <Container className="menu-container">
-            <Menu.Item name='burger' onClick={this.handleSidebarToggle}><Icon name="bars" /></Menu.Item>
+            <Menu.Item name='burger' onClick={this.handleSideBarShow}><Icon name="bars" /></Menu.Item>
             <Menu.Item>Simple Recipe</Menu.Item>
             <Menu.Menu className="top-menu" position="right">
               <Menu.Item><SearchRecipes /></Menu.Item>
@@ -138,7 +107,7 @@ export class Header extends Component {
         </Responsive>
         <Responsive as={Menu} attached borderless maxWidth={853} size="massive" className="top-menu">
           <Menu.Item name='burger' onClick={this.handleSidebarToggle}><Icon name="bars" /></Menu.Item>
-          <Menu.Item>Simple Recipe</Menu.Item>
+          <Menu.Item className="top-menu-title">Simple Recipe</Menu.Item>
           <Menu.Menu className="top-menu" position="right">
             <Menu.Item name='login' onClick={this.handleItemClick}><Icon className="google icon" />{this.props.isSignedIn ? 'Sign Out' : 'Sign In'}</Menu.Item>
           </Menu.Menu>
@@ -148,16 +117,19 @@ export class Header extends Component {
           as={Menu}
           animation='overlay'
           icon='labeled'
-          onHide={this.handleSidebarToggle}
+          onHide={this.handleSideBarHide}
           vertical
           visible={this.state.sidebarVisible}
           width='thin'
+          inverted
         >
           <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}><Icon name="home" />Home</Menu.Item>
           {this.props.isSignedIn ? <Menu.Item name="submit" active={activeItem === 'submit'} onClick={this.handleItemClick}><Icon name="edit" /> Submit Recipe</Menu.Item> : null}
           {this.props.isAdmin ? <Menu.Item name="admin" active={activeItem === 'admin'} onClick={this.handleItemClick}><Icon name="user secret" /> Admin Panel</Menu.Item> : null}
-          <Menu.Item><SearchRecipes /></Menu.Item>
-          <Menu.Item><FilterRecipes /></Menu.Item>
+          <Responsive maxWidth={853}>
+            <Menu.Item><SearchRecipes /></Menu.Item>
+            <Menu.Item><FilterRecipes /></Menu.Item>
+          </Responsive>
         </Sidebar>
       </div>
     )

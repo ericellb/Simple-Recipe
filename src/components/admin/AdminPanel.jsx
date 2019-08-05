@@ -29,9 +29,6 @@ export class AdminPanel extends Component {
         <div className="submission-list flex-item">
           <SubmissionList></SubmissionList>
         </div>
-        {/* <div className="rate-limit-list flex-item">
-          <RateList></RateList>
-        </div> */}
       </div>
     )
   }

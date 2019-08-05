@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Container } from 'semantic-ui-react';
+import { Card, Container, Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import { fetchRecipes } from '../../actions'
@@ -7,8 +7,18 @@ import RecipeCard from './RecipeCard';
 
 export class RecipeList extends Component {
 
+  state = {
+    loading: true
+  }
+
   componentDidMount() {
     this.props.fetchRecipes("chicken");
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps !== this.props) {
+      this.setState({ loading: false });
+    }
   }
 
   renderRecipeList() {
@@ -34,6 +44,7 @@ export class RecipeList extends Component {
   render() {
     return (
       <Container className="recipe-list">
+        <Loader active={this.state.loading} content="The server is feeling a little grumpy... He's working on building some recipes." />
         <Card.Group centered className="recipe-card-group">
           {this.renderRecipeList()}
         </Card.Group>
