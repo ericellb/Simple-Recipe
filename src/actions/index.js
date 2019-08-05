@@ -21,8 +21,8 @@ export const getAdmin = (userId) => async (dispatch) => {
   dispatch({ type: GET_ADMIN, payload: res.data });
 }
 
-export const fetchRecipes = (cuisineType, foodType) => async (dispatch) => {
-  let url = (cuisineType === null ? `${baseUrl}/recipes?foodType=${foodType}` : `${baseUrl}/recipes?cuisineType=${cuisineType}`);
+export const fetchRecipes = (foodFilter) => async (dispatch) => {
+  let url = `${baseUrl}/recipes?foodFilter=${foodFilter}`;
   const res = await axios.get(url);
   dispatch({ type: FETCH_RECIPES, payload: res.data });
 };

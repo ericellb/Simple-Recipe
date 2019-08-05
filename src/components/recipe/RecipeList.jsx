@@ -7,9 +7,8 @@ import RecipeCard from './RecipeCard';
 
 export class RecipeList extends Component {
 
-
   componentDidMount() {
-    this.props.fetchRecipes(null, "chicken");
+    this.props.fetchRecipes("chicken");
   }
 
   renderRecipeList() {
@@ -25,6 +24,7 @@ export class RecipeList extends Component {
             title={data.title}
             description={data.description}
             extra={data.extra}
+            rating={data.ratingAvg}
           />
         )
       });
@@ -33,7 +33,7 @@ export class RecipeList extends Component {
 
   render() {
     return (
-      <Container fluid className="recipe-list">
+      <Container className="recipe-list">
         <Card.Group centered className="recipe-card-group">
           {this.renderRecipeList()}
         </Card.Group>

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { Menu, Icon, Responsive, Dropdown } from 'semantic-ui-react'
+import { Menu, Icon, Responsive, Container, Sidebar } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import createHashHistory from '../history';
 
+import SearchRecipes from './SearchRecipes';
+import FilterRecipes from './FilterRecipes';
 import { getAdmin, signIn, signOut } from '../actions';
 
 let dropdownOptions = [
@@ -33,7 +35,7 @@ export class Header extends Component {
 
   state = {
     activeItem: 'home',
-    visible: false
+    sidebarVisible: false
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -107,30 +109,57 @@ export class Header extends Component {
     this.handleNavigation(value);
   }
 
+  handleSidebarToggle = () => {
+    if (this.state.sidebarVisible)
+      this.setState({ sidebarVisible: false });
+    else
+      this.setState({ sidebarVisible: true })
+  }
+
+  // <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}></Menu.Item>
+  // {this.props.isSignedIn ? <Menu.Item name="submit" active={activeItem === 'submit'} onClick={this.handleItemClick}>Submit Recipe</Menu.Item> : null}
+  // {this.props.isAdmin ? <Menu.Item name="admin" active={activeItem === 'admin'} onClick={this.handleItemClick}></Menu.Item> : null}
+  // <Menu.Item><SearchBar></SearchBar></Menu.Item>
 
   render() {
     const { activeItem } = this.state;
     return (
-      <React.Fragment>
-        <Responsive as={Menu} attached inverted minWidth={427} className="top-menu">
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>Simple Recipe</Menu.Item>
-          {this.props.isSignedIn ? <Menu.Item name="submit" active={activeItem === 'submit'} onClick={this.handleItemClick}>Submit Recipe</Menu.Item> : null}
-          {this.props.isAdmin ? <Menu.Item name="admin" active={activeItem === 'admin'} onClick={this.handleItemClick}></Menu.Item> : null}
-          <Menu.Item position="right" name='login' onClick={this.handleItemClick}><Icon className="google icon" />{this.props.isSignedIn ? 'Sign Out' : 'Sign In'}</Menu.Item>
+      <div>
+        <Responsive as={Menu} minWidth={853} attached borderless className="top-menu">
+          <Container className="menu-container">
+            <Menu.Item name='burger' onClick={this.handleSidebarToggle}><Icon name="bars" /></Menu.Item>
+            <Menu.Item>Simple Recipe</Menu.Item>
+            <Menu.Menu className="top-menu" position="right">
+              <Menu.Item><SearchRecipes /></Menu.Item>
+              <Menu.Item><FilterRecipes /></Menu.Item>
+              <Menu.Item name='login' onClick={this.handleItemClick}><Icon className="google icon" />{this.props.isSignedIn ? 'Sign Out' : 'Sign In'}</Menu.Item>
+            </Menu.Menu>
+          </Container>
         </Responsive>
-        <Responsive as={Menu} attached inverted maxWidth={426} className="top-menu">
-          <Menu.Item>
-            <Dropdown
-              className="inverted"
-              inline
-              options={dropdownOptions}
-              defaultValue={dropdownOptions[0].value}
-              onChange={this.mobileMenuChange}
-            />
-          </Menu.Item>
-          <Menu.Item position="right" name='login' onClick={this.handleItemClick}><Icon className="google icon" />{this.props.isSignedIn ? 'Sign Out' : 'Sign In'}</Menu.Item>
+        <Responsive as={Menu} attached borderless maxWidth={853} size="massive" className="top-menu">
+          <Menu.Item name='burger' onClick={this.handleSidebarToggle}><Icon name="bars" /></Menu.Item>
+          <Menu.Item>Simple Recipe</Menu.Item>
+          <Menu.Menu className="top-menu" position="right">
+            <Menu.Item name='login' onClick={this.handleItemClick}><Icon className="google icon" />{this.props.isSignedIn ? 'Sign Out' : 'Sign In'}</Menu.Item>
+          </Menu.Menu>
         </Responsive>
-      </React.Fragment>
+        <Sidebar
+          className="sidebar-overlay"
+          as={Menu}
+          animation='overlay'
+          icon='labeled'
+          onHide={this.handleSidebarToggle}
+          vertical
+          visible={this.state.sidebarVisible}
+          width='thin'
+        >
+          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}><Icon name="home" />Home</Menu.Item>
+          {this.props.isSignedIn ? <Menu.Item name="submit" active={activeItem === 'submit'} onClick={this.handleItemClick}><Icon name="edit" /> Submit Recipe</Menu.Item> : null}
+          {this.props.isAdmin ? <Menu.Item name="admin" active={activeItem === 'admin'} onClick={this.handleItemClick}><Icon name="user secret" /> Admin Panel</Menu.Item> : null}
+          <Menu.Item><SearchRecipes /></Menu.Item>
+          <Menu.Item><FilterRecipes /></Menu.Item>
+        </Sidebar>
+      </div>
     )
   }
 }

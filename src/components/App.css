@@ -1,8 +1,33 @@
-/* App.jsx */
+
 
 /* Header.jsx */
+
+.top-menu {
+  background: #3B5897 !important;
+  border: 0px !important;
+}
+
+.top-menu .item {
+  color: white !important;
+}
+
+.menu .dropdown .search{
+  max-height: 34px;
+}
+
 .ui.right.aligned.search {
   margin-right: 10px;
+}
+
+.sidebar-overlay {
+  top: 64px !important;
+  width: 280px !important;
+}
+
+@media only screen and (max-width: 853px) {
+  .sidebar-overlay {
+    top: 51.42px !important;
+  }
 }
 
 .login-button {
@@ -16,138 +41,34 @@
   }
 }
 
+/* SearchBar.jsx */
+.recipe-search-bar input {
+  border-radius: 0px !important;
+}
 
+/* SplashPage.jsx */
 
-/* TitleSection.jsx */
-
-.title-container {
+.splash-container {
   position: relative;
 }
 
-.title-image {
-  max-height: 320px;
-  display: block;
+.splash-image {
+  height: calc(100% - 64px - 60px);
 }
 
-.image-overlay {
+.splash-image-overlay {
   position: absolute;
+  top:0px;
   width: 100%;
-  background: linear-gradient(to left, rgba(0,0,0,0) 0%,rgba(0, 0, 0, 1) 100%);
-  top: 0px;
   height: 100%;
-  opacity: 0.75;
 }
 
-.text-overlay {
+.splash-text-overlay {
   position: absolute;
+  top:0px;
   width: 100%;
-  top: 0px;
-  padding: calc(18px + 6 * ((100vw - 320px) / 680));
-  color: #eeeeee;
-  font-size: calc(14px + 6 * ((100vw - 320px) / 680));
+  height: 100%;
 }
-
-.text-overlay h1 {
-  font-size: calc(22px + 6 * ((100vw - 320px) / 680));
-  margin-bottom: 8px;
-}
-
-
-/* RecipeSubmit.jsx */
-.form-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-submit-button {
-  align-self: center;
-}
-
-/* RecipeSearch.jsx */
-.search-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.search-cuisine {
-  display: flex;
-  flex: 1;
-  justify-content: flex-start;
-  order: 1;
-}
-.icons {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  order:2;
-}
-.search-recipe {
-  display: flex;
-  justify-content: flex-end;
-  flex: 1;
-  order: 2;
-}
-
-.icon-container {
-  margin-right: 16px;
-  min-width: 66px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-@media only screen and (max-width: 898px) {
-  .search-cuisine {
-    justify-content: center;
-    flex-basis: 50%;
-    order:1;
-  }
-  .icons {
-    flex-basis: 100%;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    order:2;
-  }
-  .search-recipe {
-    justify-content: center;
-    flex-basis: 50%;
-    order:1;
-  }
-}
-
-@media only screen and (max-width: 462px) {
-  .search-cuisine {
-    justify-content: center;
-    flex-basis: 100%;
-    order:2;
-  }
-  .icons {
-    flex-basis: 100%;
-    padding-bottom: 16px;
-    order:3;
-  }
-  .search-recipe {
-    justify-content: center;
-    flex-basis: 100%;
-    order:1;
-    padding-bottom: 16px;
-  }
-
-  .icon-container {
-    margin-right: 16px;
-    min-width: 36px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 12px;
-  }
-
-  .ui.right.aligned.search {
-    max-width: 196px;
-  }
-}
-
-
 
 /* RecipeList.jsx */
 .ui.cards > .card.card-container {
@@ -155,6 +76,9 @@
   margin-right: 20px;
 }
 
+.ui.card {
+  border-radius: 0px !important;
+}
 
 .ui.cards > .card.card-container > .image {
   border-radius: 0px 0px 0px 0px !important;
@@ -165,8 +89,13 @@
   position: relative;
 }
 
+.menu-container {
+  width: 1600px !important;
+}
+
 .recipe-list {
   margin-bottom: 64px;
+  width: 1600px !important;
 }
 
 .recipe-card-group {
@@ -194,6 +123,20 @@
   border-radius: 0px !important;
 }
 
+/* RecipeSubmit.jsx */
+.popup.error {
+  color: red !important;
+}
+
+.popup.success {
+  color: green !important;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
 /* Footer.jsx */
 .footer {
   height: 60px;
@@ -206,7 +149,7 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  z-index: 10;
+  z-index: 2000;
 }
 
 .content-footer {
@@ -225,11 +168,18 @@
   color: white;
 }
 
-/* RecipeSubmit.jsx */
-.popup.error {
-  color: red !important;
+
+
+/* Target Mobile Media Queries */
+
+@media only screen and (max-width: 425px) {
+  .ui.card {
+    max-width: 165px !important;
+  }
 }
 
-.popup.success {
-  color: green !important;
+@media only screen and (max-width: 375px) {
+  .ui.card {
+    max-width: 140px !important;
+  }
 }

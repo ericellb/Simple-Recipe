@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 
 import Header from './Header';
-import TitleSection from './TitleSection';
-import SearchBar from './SearchBar';
 import RecipeList from './recipe/RecipeList';
 import RecipeSubmit from './recipe/RecipeSubmit';
 import AdminPanel from './admin/AdminPanel';
@@ -18,12 +16,10 @@ class App extends Component {
       <div className="app">
         <HashRouter>
           <Header></Header>
-          <TitleSection></TitleSection>
-          <SearchBar></SearchBar>
-          <Footer></Footer>
-          <Route path="/submit" exact component={RecipeSubmit} />
           <Route path="/" exact component={RecipeList} />
+          <Route path="/submit" exact component={RecipeSubmit} />
           <Route path="/admin" exact component={AdminPanel} />
+          <Footer></Footer>
         </HashRouter>
       </div>
     )
