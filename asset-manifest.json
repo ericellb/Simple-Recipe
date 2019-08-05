@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Simple-Recipe/static/css/main.f138cde3.chunk.css",
-    "main.js": "/Simple-Recipe/static/js/main.efebe461.chunk.js",
-    "main.js.map": "/Simple-Recipe/static/js/main.efebe461.chunk.js.map",
+    "main.css": "/Simple-Recipe/static/css/main.effdcd33.chunk.css",
+    "main.js": "/Simple-Recipe/static/js/main.59107175.chunk.js",
+    "main.js.map": "/Simple-Recipe/static/js/main.59107175.chunk.js.map",
     "runtime~main.js": "/Simple-Recipe/static/js/runtime~main.fe7f830d.js",
     "runtime~main.js.map": "/Simple-Recipe/static/js/runtime~main.fe7f830d.js.map",
     "static/css/2.9a2cac82.chunk.css": "/Simple-Recipe/static/css/2.9a2cac82.chunk.css",
-    "static/js/2.441817ef.chunk.js": "/Simple-Recipe/static/js/2.441817ef.chunk.js",
-    "static/js/2.441817ef.chunk.js.map": "/Simple-Recipe/static/js/2.441817ef.chunk.js.map",
+    "static/js/2.30aa4be2.chunk.js": "/Simple-Recipe/static/js/2.30aa4be2.chunk.js",
+    "static/js/2.30aa4be2.chunk.js.map": "/Simple-Recipe/static/js/2.30aa4be2.chunk.js.map",
     "index.html": "/Simple-Recipe/index.html",
-    "precache-manifest.5702ba2c73f34e7ddf605e8c4ccff957.js": "/Simple-Recipe/precache-manifest.5702ba2c73f34e7ddf605e8c4ccff957.js",
+    "precache-manifest.6a833e7f2d053e94d4f133f96475819b.js": "/Simple-Recipe/precache-manifest.6a833e7f2d053e94d4f133f96475819b.js",
     "service-worker.js": "/Simple-Recipe/service-worker.js",
     "static/css/2.9a2cac82.chunk.css.map": "/Simple-Recipe/static/css/2.9a2cac82.chunk.css.map",
-    "static/css/main.f138cde3.chunk.css.map": "/Simple-Recipe/static/css/main.f138cde3.chunk.css.map",
+    "static/css/main.effdcd33.chunk.css.map": "/Simple-Recipe/static/css/main.effdcd33.chunk.css.map",
     "static/media/semantic.less": "/Simple-Recipe/static/media/outline-icons.ef60a4f6.woff"
   }
 }
