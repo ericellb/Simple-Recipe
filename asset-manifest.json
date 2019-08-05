@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Simple-Recipe/static/css/main.fdf9cc62.chunk.css",
-    "main.js": "/Simple-Recipe/static/js/main.132b6ae1.chunk.js",
-    "main.js.map": "/Simple-Recipe/static/js/main.132b6ae1.chunk.js.map",
+    "main.js": "/Simple-Recipe/static/js/main.36e5628c.chunk.js",
+    "main.js.map": "/Simple-Recipe/static/js/main.36e5628c.chunk.js.map",
     "runtime~main.js": "/Simple-Recipe/static/js/runtime~main.fe7f830d.js",
     "runtime~main.js.map": "/Simple-Recipe/static/js/runtime~main.fe7f830d.js.map",
     "static/css/2.9a2cac82.chunk.css": "/Simple-Recipe/static/css/2.9a2cac82.chunk.css",
     "static/js/2.8e35d3a6.chunk.js": "/Simple-Recipe/static/js/2.8e35d3a6.chunk.js",
     "static/js/2.8e35d3a6.chunk.js.map": "/Simple-Recipe/static/js/2.8e35d3a6.chunk.js.map",
     "index.html": "/Simple-Recipe/index.html",
-    "precache-manifest.eeb09b7066406539cd6cbe364fe96229.js": "/Simple-Recipe/precache-manifest.eeb09b7066406539cd6cbe364fe96229.js",
+    "precache-manifest.fe89a6035ffd7f35209c64de7eaa66d7.js": "/Simple-Recipe/precache-manifest.fe89a6035ffd7f35209c64de7eaa66d7.js",
     "service-worker.js": "/Simple-Recipe/service-worker.js",
     "static/css/2.9a2cac82.chunk.css.map": "/Simple-Recipe/static/css/2.9a2cac82.chunk.css.map",
     "static/css/main.fdf9cc62.chunk.css.map": "/Simple-Recipe/static/css/main.fdf9cc62.chunk.css.map",
