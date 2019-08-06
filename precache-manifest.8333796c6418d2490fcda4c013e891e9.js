@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "acc6c82afc47de4256dc3020d3c6519c",
+    "revision": "2306d62bbec5e2d2b4294f2a8cff3769",
     "url": "/Simple-Recipe/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Simple-Recipe/static/css/2.9a2cac82.chunk.css"
   },
   {
-    "revision": "7c73e991dbab20c5a2a4",
+    "revision": "34a56a92f00477cc203c",
     "url": "/Simple-Recipe/static/css/main.a9e3b145.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Simple-Recipe/static/js/2.8e35d3a6.chunk.js"
   },
   {
-    "revision": "7c73e991dbab20c5a2a4",
-    "url": "/Simple-Recipe/static/js/main.d8468ed0.chunk.js"
+    "revision": "34a56a92f00477cc203c",
+    "url": "/Simple-Recipe/static/js/main.34ca8564.chunk.js"
   },
   {
     "revision": "24d600849efc41d245e3",
