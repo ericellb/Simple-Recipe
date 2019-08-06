@@ -117,7 +117,7 @@ export class RecipeCard extends Component {
           <Card.Content>
             <Card.Header href={link} target="_blank">{title}</Card.Header>
             <Card.Description>
-              {description}
+              {description.substring(0, 120) + '...'}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>

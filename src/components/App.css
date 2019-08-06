@@ -125,6 +125,10 @@
   margin: 12.8px !important;
 }
 
+.ui.card.visible.transition {
+  display: flex !important;
+}
+
 .ui.cards > .card > .image > img, .ui.card > .image > img {
   border-radius: 0px !important;
 }

@@ -54,6 +54,9 @@ export class SearchRecipes extends Component {
       if (results <= 0)
         results = _.filter(this.props.dictionary.dictionary, isMatchDescription).slice(0, 4);
 
+      results.forEach((result) => {
+        result.description = result.description.substring(0, 66);
+      })
       this.setState({
         isLoading: false,
         results: results,

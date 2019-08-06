@@ -94,7 +94,7 @@ export class Header extends Component {
     const { activeItem } = this.state;
     return (
       <div>
-        <Responsive as={Menu} minWidth={853} attached borderless className="top-menu">
+        <Responsive as={Menu} minWidth={854} attached borderless className="top-menu">
           <Container className="menu-container">
             <Menu.Item name='burger' onClick={this.handleSideBarShow}><Icon name="bars" /></Menu.Item>
             <Menu.Item>Simple Recipe</Menu.Item>
@@ -106,12 +106,13 @@ export class Header extends Component {
           </Container>
         </Responsive>
         <Responsive as={Menu} attached borderless maxWidth={853} size="massive" className="top-menu">
-          <Menu.Item name='burger' onClick={this.handleSidebarToggle}><Icon name="bars" /></Menu.Item>
+          <Menu.Item name='burger' onClick={this.handleSideBarShow}><Icon name="bars" /></Menu.Item>
           <Menu.Item className="top-menu-title">Simple Recipe</Menu.Item>
           <Menu.Menu className="top-menu" position="right">
             <Menu.Item name='login' onClick={this.handleItemClick}><Icon className="google icon" />{this.props.isSignedIn ? 'Sign Out' : 'Sign In'}</Menu.Item>
           </Menu.Menu>
         </Responsive>
+
         <Sidebar
           className="sidebar-overlay"
           as={Menu}

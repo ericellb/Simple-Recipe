@@ -56,7 +56,7 @@ export class RecipeList extends Component {
           {this.renderRecipeList()}
         </Card.Group>
         <div className="recipe-list-load-container">
-          <Button size="massive" onClick={this.handleLoadMoreRecipes}>Load more...</Button>
+          {!this.state.loading ? <Button toggle={this.state.loading} size="massive" onClick={this.handleLoadMoreRecipes}>Load more...</Button> : null}
         </div>
       </Container>
     )
